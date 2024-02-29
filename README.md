@@ -1,0 +1,2 @@
+# weaviate-workshop
+Weaviate workshop
