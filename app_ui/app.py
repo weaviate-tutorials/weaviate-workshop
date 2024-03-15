@@ -15,11 +15,12 @@ def generate_query_from_prompt(prompt):
     return response.search_queries[0]["text"]
 
 
-# COLLECTION_NAME = "Wikipedia"
-# MAIN_COLUMN = "title"
-# INIT_QUERY = "Albert Einstein"
 # cluster_url = os.getenv("WORKSHOP_DEMO_URL")
 # cluster_key = os.getenv("WORKSHOP_DEMO_KEY_ADMIN")
+# COLLECTION_NAME = "Wikipedia"
+# MAIN_COLUMN = "title"
+# NAMED_VECTOR = None
+# INIT_QUERY = "Albert Einstein"
 
 
 cluster_url = os.getenv("WCS_DEMO_URL")
