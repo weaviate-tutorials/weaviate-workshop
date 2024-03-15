@@ -2,6 +2,72 @@ import streamlit as st
 import weaviate
 from weaviate.classes.query import MetadataQuery
 import os
+import cohere, os
+
+
+co = cohere.Client(os.getenv("COHERE_API_KEY"))
+
+def generate_query_from_prompt(prompt):
+    response = co.chat(
+        message=prompt,
+        search_queries_only=True
+    )
+    return response.search_queries[0]["text"]
+
+
+# COLLECTION_NAME = "Wikipedia"
+# MAIN_COLUMN = "title"
+# INIT_QUERY = "Albert Einstein"
+# cluster_url = os.getenv("WORKSHOP_DEMO_URL")
+# cluster_key = os.getenv("WORKSHOP_DEMO_KEY_ADMIN")
+
+
+cluster_url = os.getenv("WCS_DEMO_URL")
+cluster_key = os.getenv("WCS_DEMO_KEY")
+COLLECTION_NAME = "JeopardyQuestion"
+MAIN_COLUMN = "question"
+NAMED_VECTOR = "default"
+INIT_QUERY = "airplane physics"
+
+
+if 'grouped_task_output' not in st.session_state:
+    st.session_state.grouped_task_output = "Please click the button to generate a response."
+
+if 'single_prompt_output' not in st.session_state:
+    st.session_state.single_prompt_output = [{
+        "data": "Please click the button to generate a response.",
+        "generated": ""
+    }]
+
+
+def generate_grouped_task():
+    grouped_response = collection.generate.near_text(
+        query=rag_query_str,
+        limit=rag_limit,
+        grouped_task=grouped_task,
+        return_metadata=MetadataQuery(score=True),
+    )
+
+    st.session_state.grouped_task_output = grouped_response.generated
+    return True
+
+
+def generate_single_prompt():
+    single_response = collection.generate.near_text(
+        query=rag_query_str,
+        limit=rag_limit,
+        single_prompt=single_prompt,
+        return_metadata=MetadataQuery(score=True),
+    )
+    single_prompt_responses = [
+        {
+            "data": o.properties[MAIN_COLUMN],
+            "generated": o.generated
+        }
+        for o in single_response.objects
+    ]
+    st.session_state.single_prompt_output = single_prompt_responses
+    return True
 
 
 headers = {
@@ -13,24 +79,18 @@ headers = {
     ),  # Replace with your inference API key
 }
 
-conn_type = st.selectbox(
-    "Weaviate connection type", options=["WCS", "Local"], index=0
-)
+conn_type = st.selectbox("Weaviate connection type", options=["WCS", "Local"], index=0)
 if conn_type == "WCS":
-    client_url = os.getenv("WORKSHOP_DEMO_URL")
-    client_key = os.getenv("WORKSHOP_DEMO_KEY_ADMIN")
-    if client_url is None or client_key is None:
+    if cluster_url is None or cluster_key is None:
         client = None
     else:
         client = weaviate.connect_to_wcs(
-            cluster_url=os.getenv("WORKSHOP_DEMO_URL"),
-            auth_credentials=weaviate.auth.AuthApiKey(os.getenv("WORKSHOP_DEMO_KEY_ADMIN")),
+            cluster_url=cluster_url,
+            auth_credentials=weaviate.auth.AuthApiKey(cluster_key),
             headers=headers,
         )
 else:
-    client = weaviate.connect_to_local(
-        headers=headers
-    )
+    client = weaviate.connect_to_local(headers=headers)
 
 # Main app
 if client is None:
@@ -39,79 +99,105 @@ else:
     st.header("Weaviate Search and RAG Demo")
     st.subheader("Inputs")
 
-    collection = client.collections.get("Wikipedia")
-    main_column = "title"
+    collection = client.collections.get(COLLECTION_NAME)
 
-    with st.container(height=200):
-        query_str = st.text_input(
-            label="Query string", value="how do planes fly", key="query_str"
-        )
-        limit = st.number_input(label="Limit", value=7, key="limit")
+    search_tab, rag_tab = st.tabs(["Search", "RAG"])
 
-    return_metadata = MetadataQuery(distance=True)
-
-    neartext_response = collection.query.near_text(
-        query=query_str, limit=limit, return_metadata=return_metadata
-    )
-
-    keyword_response = collection.query.bm25(
-        query=query_str, limit=limit, return_metadata=return_metadata
-    )
-
-    hybrid_response = collection.query.near_text(
-        query=query_str, limit=limit, return_metadata=return_metadata
-    )
-
-    def show_response(response):
+    with search_tab:
         with st.container(height=200):
-            for i, obj in enumerate(response.objects):
-                with st.expander(f"{obj.properties[main_column]}"):
-                    st.subheader(f"Object:")
-                    st.write(obj.properties)
-                    st.subheader(f"Distance:")
-                    st.write(obj.metadata.distance)
+            query_str = st.text_input(
+                label="Query string", value=INIT_QUERY, key="query_str"
+            )
+            limit = st.number_input(label="Limit", value=5, key="limit")
 
-    st.subheader("Search results")
-    neartext, keyword, hybrid = st.tabs(["NearText", "Keyword", "Hybrid"])
-    with neartext:
-        show_response(neartext_response)
-    with keyword:
-        show_response(keyword_response)
-    with hybrid:
-        show_response(hybrid_response)
-
-    st.subheader("Retrieval augmented generation (RAG)")
-    st.write("**Inputs**")
-
-    with st.container(height=200):
-        single_prompt = st.text_input(
-            label="Single prompt",
-            value="Turn this into a fun haiku: {" + main_column + "}",
-            key="single_prompt",
-        )
-        grouped_task = st.text_input(
-            label="Grouped task", value="Summarize these results.", key="grouped_task"
+        neartext_response = collection.query.near_text(
+            query=query_str,
+            limit=limit,
+            target_vector=NAMED_VECTOR,
+            return_metadata=MetadataQuery(distance=True),
         )
 
-    # Perform RAG
-    rag_response = collection.generate.near_text(
-        query=query_str,
-        limit=limit,
-        single_prompt=single_prompt,
-        grouped_task=grouped_task,
-        return_metadata=return_metadata,
-    )
+        keyword_response = collection.query.bm25(
+            query=query_str,
+            limit=limit,
+            return_metadata=MetadataQuery(score=True),
+        )
 
-    # Object details tab
-    st.write("**Outputs**")
-    single_prompt_output, grouped_task_output = st.tabs(
-        ["Single prompt", "Grouped task"]
-    )
-    with single_prompt_output:
-        with st.container(height=200):
-            for i, rag_obj in enumerate(rag_response.objects):
-                st.caption(f"{rag_obj.properties[main_column]}:")
-                st.write(rag_obj.generated)
-    with grouped_task_output:
-        with st.container(height=200):
-            st.write(rag_response.generated)
+        hybrid_response = collection.query.near_text(
+            query=query_str,
+            limit=limit,
+            target_vector=NAMED_VECTOR,
+            return_metadata=MetadataQuery(score=True),
+        )
+
+        def show_response(response):
+            with st.container(height=300):
+                for i, obj in enumerate(response.objects):
+                    with st.expander(f"{obj.properties[MAIN_COLUMN]}"):
+                        st.subheader(f"Object:")
+                        st.write(obj.properties)
+                        st.subheader(f"Distance:")
+                        st.write(obj.metadata.distance)
+
+        st.subheader("Search results")
+        neartext, keyword, hybrid = st.tabs(["NearText", "Keyword", "Hybrid"])
+        with neartext:
+            show_response(neartext_response)
+        with keyword:
+            show_response(keyword_response)
+        with hybrid:
+            show_response(hybrid_response)
+
+    with rag_tab:
+        st.subheader("Retrieval augmented generation (RAG)")
+        st.write("**Inputs**")
+
+        grouped_task_tab, single_prompt_tab = st.tabs(
+            ["Grouped task", "Single prompt"]
+        )
+
+        with grouped_task_tab:
+            with st.container():
+                grouped_task = st.text_area(
+                    label="Grouped task",
+                    value="Describe how airplanes fly, like you would to an 8 year old.",
+                    key="grouped_task",
+                    height=60
+                )
+                query_method_col, query_str_col = st.columns([1, 2])
+                with query_method_col:
+                    query_method = st.selectbox(
+                        options=["Manual", "From prompt"],
+                        label="Query method", key="query_method"
+                    )
+                with query_str_col:
+                    if query_method == "From prompt":
+                        rag_query_str = generate_query_from_prompt(grouped_task)
+                        st.write(f"Generated query")
+                        with st.container():
+                            st.text(rag_query_str)
+                    else:
+                        rag_query_str = st.text_input(
+                            label="Query string", value=INIT_QUERY, key="rag_query_str"
+                        )
+                rag_limit = st.number_input(label="Limit", value=5, key="rag_limit")
+
+            st.button("Generate response", key="generate_grouped_task", on_click=generate_grouped_task)
+            st.write("**Outputs**")
+            with st.container(height=150):
+                for i, rag_obj in enumerate(st.session_state.single_prompt_output):
+                    st.caption(rag_obj["data"])
+                    st.write(rag_obj["generated"])
+
+        with single_prompt_tab:
+            single_prompt = st.text_area(
+                label="Single prompt",
+                value="Turn this into a fun haiku: {" + MAIN_COLUMN + "}",
+                key="single_prompt",
+                height=60,
+            )
+            st.button("Generate response", key="generate_single_prompt", on_click=generate_single_prompt)
+            st.write("**Outputs**")
+
+            with st.container(height=150):
+                st.write(st.session_state.grouped_task_output)
