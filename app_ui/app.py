@@ -7,43 +7,37 @@ import cohere, os
 
 co = cohere.Client(os.getenv("COHERE_API_KEY"))
 
+
 def generate_query_from_prompt(prompt):
-    response = co.chat(
-        message=prompt,
-        search_queries_only=True
-    )
+    response = co.chat(message=prompt, search_queries_only=True)
     return response.search_queries[0]["text"]
 
 
-# cluster_url = os.getenv("WORKSHOP_DEMO_URL")
-# cluster_key = os.getenv("WORKSHOP_DEMO_KEY_ADMIN")
-# COLLECTION_NAME = "Wikipedia"
-# MAIN_COLUMN = "title"
-# NAMED_VECTOR = None
-# INIT_QUERY = "Albert Einstein"
+cluster_url = os.getenv("WORKSHOP_DEMO_URL")
+cluster_key = os.getenv("WORKSHOP_DEMO_KEY_ADMIN")
+COLLECTION_NAME = "Wikipedia"
+MAIN_COLUMN = "title"
+NAMED_VECTOR = None
+INIT_QUERY = "Albert Einstein"
 
 
-cluster_url = os.getenv("WCS_DEMO_URL")
-cluster_key = os.getenv("WCS_DEMO_KEY")
-COLLECTION_NAME = "JeopardyQuestion"
-MAIN_COLUMN = "question"
 NAMED_VECTOR = "default"
-INIT_QUERY = "airplane physics"
 
 
-if 'grouped_task_output' not in st.session_state:
-    st.session_state.grouped_task_output = "Please click the button to generate a response."
+if "grouped_task_output" not in st.session_state:
+    st.session_state.grouped_task_output = (
+        "Please click the button to generate a response."
+    )
 
-if 'single_prompt_output' not in st.session_state:
-    st.session_state.single_prompt_output = [{
-        "data": "Please click the button to generate a response.",
-        "generated": ""
-    }]
+if "single_prompt_output" not in st.session_state:
+    st.session_state.single_prompt_output = [
+        {"data": "Please click the button to generate a response.", "generated": ""}
+    ]
 
 
 def generate_grouped_task():
     grouped_response = collection.generate.near_text(
-        query=rag_query_str,
+        query=gt_rag_query_str,
         limit=rag_limit,
         grouped_task=grouped_task,
         return_metadata=MetadataQuery(score=True),
@@ -55,16 +49,13 @@ def generate_grouped_task():
 
 def generate_single_prompt():
     single_response = collection.generate.near_text(
-        query=rag_query_str,
+        query=sp_rag_query_str,
         limit=rag_limit,
         single_prompt=single_prompt,
         return_metadata=MetadataQuery(score=True),
     )
     single_prompt_responses = [
-        {
-            "data": o.properties[MAIN_COLUMN],
-            "generated": o.generated
-        }
+        {"data": o.properties[MAIN_COLUMN], "generated": o.generated}
         for o in single_response.objects
     ]
     st.session_state.single_prompt_output = single_prompt_responses
@@ -114,7 +105,7 @@ else:
         neartext_response = collection.query.near_text(
             query=query_str,
             limit=limit,
-            target_vector=NAMED_VECTOR,
+            # target_vector=NAMED_VECTOR,
             return_metadata=MetadataQuery(distance=True),
         )
 
@@ -124,10 +115,12 @@ else:
             return_metadata=MetadataQuery(score=True),
         )
 
+        # TODO: investigate what is going on with .hybrid
         hybrid_response = collection.query.near_text(
             query=query_str,
             limit=limit,
-            target_vector=NAMED_VECTOR,
+            # alpha=0.5,
+            # target_vector=NAMED_VECTOR,
             return_metadata=MetadataQuery(score=True),
         )
 
@@ -153,9 +146,7 @@ else:
         st.subheader("Retrieval augmented generation (RAG)")
         st.write("**Inputs**")
 
-        grouped_task_tab, single_prompt_tab = st.tabs(
-            ["Grouped task", "Single prompt"]
-        )
+        grouped_task_tab, single_prompt_tab = st.tabs(["Grouped task", "Single prompt"])
 
         with grouped_task_tab:
             with st.container():
@@ -163,32 +154,35 @@ else:
                     label="Grouped task",
                     value="Describe how airplanes fly, like you would to an 8 year old.",
                     key="grouped_task",
-                    height=60
+                    height=60,
                 )
                 query_method_col, query_str_col = st.columns([1, 2])
                 with query_method_col:
                     query_method = st.selectbox(
                         options=["Manual", "From prompt"],
-                        label="Query method", key="query_method"
+                        label="Query method",
+                        key="query_method",
                     )
                 with query_str_col:
                     if query_method == "From prompt":
-                        rag_query_str = generate_query_from_prompt(grouped_task)
+                        gt_rag_query_str = generate_query_from_prompt(grouped_task)
                         st.write(f"Generated query")
                         with st.container():
-                            st.text(rag_query_str)
+                            st.text(gt_rag_query_str)
                     else:
-                        rag_query_str = st.text_input(
+                        gt_rag_query_str = st.text_input(
                             label="Query string", value=INIT_QUERY, key="rag_query_str"
                         )
                 rag_limit = st.number_input(label="Limit", value=5, key="rag_limit")
 
-            st.button("Generate response", key="generate_grouped_task", on_click=generate_grouped_task)
+            st.button(
+                "Generate response",
+                key="generate_grouped_task",
+                on_click=generate_grouped_task,
+            )
             st.write("**Outputs**")
-            with st.container(height=150):
-                for i, rag_obj in enumerate(st.session_state.single_prompt_output):
-                    st.caption(rag_obj["data"])
-                    st.write(rag_obj["generated"])
+            with st.container(height=200):
+                st.write(st.session_state.grouped_task_output)
 
         with single_prompt_tab:
             single_prompt = st.text_area(
@@ -197,8 +191,16 @@ else:
                 key="single_prompt",
                 height=60,
             )
-            st.button("Generate response", key="generate_single_prompt", on_click=generate_single_prompt)
+            sp_rag_query_str = st.text_input(
+                label="Query string", value=INIT_QUERY, key="sp_rag_query_str"
+            )
+            st.button(
+                "Generate response",
+                key="generate_single_prompt",
+                on_click=generate_single_prompt,
+            )
             st.write("**Outputs**")
-
-            with st.container(height=150):
-                st.write(st.session_state.grouped_task_output)
+            with st.container(height=200):
+                for i, rag_obj in enumerate(st.session_state.single_prompt_output):
+                    st.caption(rag_obj["data"])
+                    st.write(rag_obj["generated"])
