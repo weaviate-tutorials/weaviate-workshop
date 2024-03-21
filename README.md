@@ -12,16 +12,6 @@
 
 * Docker Compose (Todo: update this in case we can do it all with WCS)
 
-
-### Install YouTube downloader
-
-<!-- ```
-python3 -m pip install --force-reinstall https://github.com/yt-dlp/yt-dlp/archive/master.tar.gz
-``` -->
-```
-brew install yt-dlp
-```
-
 ## How to setup the python environment with venv
 To run the project locally, it is best to setup python environment with venv.
 
@@ -41,6 +31,13 @@ And install the required packages.
 pip install -r requirements.txt
 ```
 
+**All together**
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
 ### Activate
 If in the future, you need to switch to the venv setup, just call:
 ```
@@ -52,3 +49,27 @@ To disconnect from the venv environment, call:
 ```
 source deactivate
 ```
+
+
+## Running the project in GitHub Codespaces
+
+1. Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop).
+
+2. Create a Codespace project
+  * Press the green `Code` button, then switch to `Codespaces` tab.
+  * Press `...` (next to the `+` button) and select `New with options...`
+  * Change the `Machine type` to `4-core` and press the green `Create codespace` button
+
+3. After the codespace is ready – set up the evironment and install the required libraries. Run:
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+4. For "lesson 5", start the `docker-compose-clip.yml` image (and give it a couple of minutes):
+```
+docker compose -f "5-multivec-named-vectors/docker-compose-clip.yml" up -d
+```
+
+5. Install Jupyter notebook extension. You will be asked for it when you open any notebook. Then switch to the .venv image.
