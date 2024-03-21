@@ -129,18 +129,16 @@ headers = {
     ),  # Replace with your inference API key
 }
 
-conn_type = st.selectbox("Weaviate connection type", options=["WCS", "Local"], index=0)
-if conn_type == "WCS":
-    if cluster_url is None or cluster_key is None:
-        client = None
-    else:
-        client = weaviate.connect_to_wcs(
-            cluster_url=cluster_url,
-            auth_credentials=weaviate.auth.AuthApiKey(cluster_key),
-            headers=headers,
-        )
+
+if cluster_url is None or cluster_key is None:
+    client = None
 else:
-    client = weaviate.connect_to_local(headers=headers)
+    client = weaviate.connect_to_wcs(
+        cluster_url=cluster_url,
+        auth_credentials=weaviate.auth.AuthApiKey(cluster_key),
+        headers=headers,
+    )
+
 
 # Main app
 if client is None:
