@@ -23,11 +23,10 @@ INIT_QUERY = "Albert Einstein"
 
 GROUPED_TASK_INIT_PROMPT = "Describe how planes can fly, as you would to an 8-year old"
 GROUPED_TASK_INIT_QUERY = "aerodynamics flight"
-GROUPED_TASK_PROMPT_PREFIX = """
-    Generate a response using the included information.
-    If the provided text is insufficient, respond with
-    'Sorry, the information provided is not enough.'
-"""
+GROUPED_TASK_PROMPT_INIT_PREFIX = """Generate a response using the included information.
+If the provided text is insufficient, respond using pre-trained knowledge,
+but add a note that the provided text does not contain the exact information
+to answer the question."""
 
 SINGLE_PROMPT_INIT_PROMPT = "Turn this into a fun haiku: {title}"
 SINGLE_PROMPT_INIT_QUERY = "aerodynamics flight"
@@ -213,13 +212,20 @@ else:
                     alpha = st.slider("Alpha", 0.0, 1.0, 0.5, 0.1, key="rag_hybrid_alpha_gt")
                 st.session_state.rag_search_type = search_type
 
+                prompt_prefix = st.text_area(
+                    label="Prompt prefix",
+                    value=GROUPED_TASK_PROMPT_INIT_PREFIX,
+                    key="prompt_prefix",
+                    height=60,
+                )
+
                 grouped_task_input = st.text_area(
                     label="Grouped task",
                     value=GROUPED_TASK_INIT_PROMPT,
                     key="grouped_task",
                     height=60,
                 )
-                grouped_task = GROUPED_TASK_PROMPT_PREFIX + " " + grouped_task_input
+                grouped_task = prompt_prefix + " " + grouped_task_input
 
                 query_method_col, query_str_col = st.columns([1, 2])
                 with query_method_col:
