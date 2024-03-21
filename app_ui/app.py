@@ -17,11 +17,10 @@ cluster_url = os.getenv("WORKSHOP_DEMO_URL")
 cluster_key = os.getenv("WORKSHOP_DEMO_KEY_ADMIN")
 COLLECTION_NAME = "Wikipedia"
 MAIN_COLUMN = "title"
-NAMED_VECTOR = None
+NAMED_VECTOR = "text_vector"
 INIT_QUERY = "Albert Einstein"
 
 
-NAMED_VECTOR = "default"
 
 
 if "grouped_task_output" not in st.session_state:
@@ -102,28 +101,6 @@ else:
             )
             limit = st.number_input(label="Limit", value=5, key="limit")
 
-        neartext_response = collection.query.near_text(
-            query=query_str,
-            limit=limit,
-            # target_vector=NAMED_VECTOR,
-            return_metadata=MetadataQuery(distance=True),
-        )
-
-        keyword_response = collection.query.bm25(
-            query=query_str,
-            limit=limit,
-            return_metadata=MetadataQuery(score=True),
-        )
-
-        # TODO: investigate what is going on with .hybrid
-        hybrid_response = collection.query.near_text(
-            query=query_str,
-            limit=limit,
-            # alpha=0.5,
-            # target_vector=NAMED_VECTOR,
-            return_metadata=MetadataQuery(score=True),
-        )
-
         def show_response(response):
             with st.container(height=300):
                 for i, obj in enumerate(response.objects):
@@ -136,10 +113,29 @@ else:
         st.subheader("Search results")
         neartext, keyword, hybrid = st.tabs(["NearText", "Keyword", "Hybrid"])
         with neartext:
+            neartext_response = collection.query.near_text(
+                query=query_str,
+                limit=limit,
+                target_vector=NAMED_VECTOR,
+                return_metadata=MetadataQuery(distance=True),
+            )
             show_response(neartext_response)
         with keyword:
+            keyword_response = collection.query.bm25(
+                query=query_str,
+                limit=limit,
+                return_metadata=MetadataQuery(score=True),
+            )
             show_response(keyword_response)
         with hybrid:
+            alpha = st.slider("Alpha", 0.0, 1.0, 0.5, 0.1)
+            hybrid_response = collection.query.hybrid(
+                query=query_str,
+                limit=limit,
+                alpha=alpha,
+                target_vector=NAMED_VECTOR,
+                return_metadata=MetadataQuery(score=True),
+            )
             show_response(hybrid_response)
 
     with rag_tab:
