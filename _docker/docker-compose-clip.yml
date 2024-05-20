@@ -9,7 +9,7 @@ services:
     - '8080'
     - --scheme
     - http
-    image: cr.weaviate.io/semitechnologies/weaviate:1.24.4
+    image: cr.weaviate.io/semitechnologies/weaviate:1.24.14
     ports:
     - 8080:8080
     - 50051:50051
@@ -17,12 +17,17 @@ services:
     - weaviate_data:/var/lib/weaviate
     restart: on-failure:0
     environment:
+      CLIP_INFERENCE_API: 'http://multi2vec-clip:8080'
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'none'
-      ENABLE_MODULES: 'multi2vec-palm,text2vec-aws,text2vec-cohere,text2vec-palm,text2vec-huggingface,text2vec-jinaai,text2vec-openai,generative-anyscale,generative-cohere,generative-palm,generative-openai,ref2vec-centroid,reranker-cohere,qna-openai'
+      ENABLE_MODULES: 'text2vec-aws,generative-aws,multi2vec-clip'
       CLUSTER_HOSTNAME: 'node1'
+  multi2vec-clip:
+    image: cr.weaviate.io/semitechnologies/multi2vec-clip:sentence-transformers-clip-ViT-B-32-multilingual-v1
+    environment:
+      ENABLE_CUDA: '0'
 volumes:
   weaviate_data:
 ...

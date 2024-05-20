@@ -3,14 +3,14 @@
 
 ## What you need for the workshop
 
-* API Keys for embedding models, like:
-  * OpenAI Key
-  * Cohere Key
+* API Keys for embedding models, from Bedrock:
+  * amazon.titan-embed-text-v1
+  * cohere.embed-english-v3
   * etc,
 
 * Python 3.9 or newer
 
-* Docker Compose (Todo: update this in case we can do it all with WCS)
+* Docker Compose
 
 ## How to setup the python environment with venv
 To run the project locally, it is best to setup python environment with venv.
@@ -58,7 +58,7 @@ source deactivate
 2. Create a Codespace project
   * Press the green `Code` button, then switch to `Codespaces` tab.
   * Press `...` (next to the `+` button) and select `New with options...`
-  * Change the `Machine type` to `4-core` and press the green `Create codespace` button
+  * Select the `aws-immersion` branch, change the `Machine type` to `4-core` and press the green `Create codespace` button
 
 3. After the codespace is ready – set up the evironment and install the required libraries. Run:
 ```
