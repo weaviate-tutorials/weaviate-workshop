@@ -1,0 +1,48 @@
+{
+     "containerDefinitions": [
+        {
+            "name": "weaviate",
+            "image": "cr.weaviate.io/semitechnologies/weaviate:1.24.11",
+            "cpu": 1024,
+            "memory": 3072,
+            "portMappings": [
+                {
+                    "name": "8080",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                },
+                {
+                    "name": "50051",
+                    "containerPort": 50051,
+                    "hostPort": 50051,
+                    "protocol": "tcp",
+                    "appProtocol": "grpc"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "systemControls": []
+        }
+    ],
+    "family": "weaviate-task",
+    "networkMode": "awsvpc",
+    "placementConstraints": [],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "ephemeralStorage": {
+        "sizeInGiB": 21
+    },
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    }
+}
