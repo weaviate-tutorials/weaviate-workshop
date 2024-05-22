@@ -5,6 +5,8 @@ __pycache__/
 **/dl_data/
 .DS_Store
 
+# ignore ipynb_checkpoints
+.ipynb_checkpoints
 
 # ignore temp files/folders with names starting with __
 __*
