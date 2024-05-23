@@ -1,75 +1,112 @@
 # Weaviate Workshop
 
 
-## What you need for the workshop
+## Accessing the workshop environment:
 
-* API Keys for embedding models, from Bedrock:
-  * amazon.titan-embed-text-v1
-  * cohere.embed-english-v3
-  * etc,
+- Go to: https://catalog.us-east-1.prod.workshops.aws/join
+- Enter the code shown on screen
+- Open the AWS console on the bottom left corner
 
-* Python 3.9 or newer
+## Setting up Amazon Bedrock
 
-* Docker Compose
+### Open Amazon Bedrock by searching for it in the search bar
+![image](./static/1.0.png)
 
-## How to setup the python environment with venv
-To run the project locally, it is best to setup python environment with venv.
+### Select the hamburger menu on the left side to open the side bar
+![image](./static/1.1.png)
 
-### Setup – do this only once
-First create a new venv configuration.
+### in the side bar select "model access"
+![image](./static/1.2.png)
+
+### Select Enable specific model
+![image](./static/1.4.png)
+
+### Select all models provided by Amazon 
+![image](./static/1.5.png)
+
+### Scroll down till you see the next button, and select this button
+![image](./static/1.6.png)
+
+### Submit the model request
+![image](./static/1.7.png)
+
+## Setting up the Identity and Access Management (IAM) roles
+
+### Search for IAM in the search bar
+![image](./static/2.0.png)
+
+### Select "Roles"
+![image](./static/2.1.png)
+
+### Search for the role starting with "sagemaker-immersion-day" and select the role were trusted entities notes "AWS Service: sagemaker"
+![image](./static/2.2.png)
+
+### Select "Add permissions" and "Attach policies"
+![image](./static/2.3.png)
+
+### Add the policy "AmazonBedrockFullAccess"
+![image](./static/2.4.png)
+
+### Add the policy "AmazonECS_FullAccess" and select "Add permissions"
+![image](./static/2.5.png)
+
+### Check that both policies are added
+![image](./static/2.6.png)
+
+## Setting up Amazon SageMaker
+
+### Search for Amazon SageMaker
+![image](./static/3.0.png)
+
+### When seeing the SageMaker landing page, select Domains (under Admin configurations)
+![image](./static/3.1.png)
+
+### Select the domain called "SageMakerImmersionDayDomain" by clicking on the name
+![image](./static/3.2.png)
+
+### Open "Studio" under "Launch"
+![image](./static/3.3.png)
+
+### Skip the tour for now
+![image](./static/3.4.png)
+
+### Select JupyterLab (top left) and select "Create JupyterLab space" (top right)
+![image](./static/3.5.png)
+
+### Create a new space
+![image](./static/3.6.png)
+
+### Select "Run space"
+![image](./static/3.7.png)
+
+### Select "Open JupyterLab" once it's ready
+![image](./static/3.8.png)
+
+### Open a Terminal (under other)
+![image](./static/3.9.png)
+
+Type the following:
+
+### Clone the workshop repository
+```bash
+git clone -b aws-immersion https://github.com/Maurits-de-Groot/weaviate-workshop-1
 ```
-python3 -m venv .venv
+
+### Move to the setup folder
+```bash
+cd weaviate-workshop-1/0-setup/
 ```
 
-Then switch to the new configuration:
-```
-source .venv/bin/activate
-```
-
-And install the required packages.
-```
-pip install -r requirements.txt
+### Ensure that the setup script is executable
+```bash
+chmod +x setup.sh
 ```
 
-**All together**
-```
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+### Run the setup.sh script
+```bash
+./setup.sh
 ```
 
-### Activate
-If in the future, you need to switch to the venv setup, just call:
-```
-source .venv/bin/activate
-```
+### Once you see the `Weaviate Endpoint Reachable at: [IP]`, copy the `[IP]` 
 
-### Deactivate
-To disconnect from the venv environment, call:
-```
-source deactivate
-```
-
-
-## Running the project in GitHub Codespaces
-
-1. Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop).
-
-2. Create a Codespace project
-  * Press the green `Code` button, then switch to `Codespaces` tab.
-  * Press `...` (next to the `+` button) and select `New with options...`
-  * Select the `aws-immersion` branch, change the `Machine type` to `4-core` and press the green `Create codespace` button
-
-3. After the codespace is ready – set up the evironment and install the required libraries. Run:
-```
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-4. For "lesson 5", start the `docker-compose-clip.yml` image (and give it a couple of minutes):
-```
-docker compose -f "5-multivec-named-vectors/docker-compose-clip.yml" up -d
-```
-
-5. Install Jupyter notebook extension. You will be asked for it when you open any notebook. Then switch to the .venv image.
+### Open the `1-intro` folder and paste the `[IP]` in `WEAVIATE_IP`

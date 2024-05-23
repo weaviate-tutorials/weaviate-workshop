@@ -2,7 +2,7 @@
      "containerDefinitions": [
         {
             "name": "weaviate",
-            "image": "cr.weaviate.io/semitechnologies/weaviate:1.24.11",
+            "image": "cr.weaviate.io/semitechnologies/weaviate:1.24.14",
             "cpu": 1024,
             "memory": 3072,
             "portMappings": [
@@ -22,7 +22,12 @@
                 }
             ],
             "essential": true,
-            "environment": [],
+            "environment": [
+                {
+                    "name": "ENABLE_MODULES",
+                    "value": "text2vec-aws,generative-aws"
+                }                 
+            ],
             "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],

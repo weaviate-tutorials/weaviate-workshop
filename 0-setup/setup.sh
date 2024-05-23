@@ -1,6 +1,6 @@
 #!/bin/sh
 echo "Installing Weaviate Python Client..."
-pip install -q weaviate-client
+pip install -q -U --force-reinstall weaviate-client
 echo "Creating ECS Cluster: weaviate-cluster..."
 aws ecs create-cluster --cluster-name weaviate-cluster > /dev/null
 echo "Creating ECS Task Definition: weaviate-task..."
