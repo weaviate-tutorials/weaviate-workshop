@@ -38,7 +38,7 @@
 ### Select "Roles"
 ![image](./static/2.1.png)
 
-### Search for the role starting with "sagemaker-immersion-day" and select the role were trusted entities notes "AWS Service: sagemaker"
+### Search for the role starting with "sagemaker-immersion-day" and click on the role name, with trusted entities note "AWS Service: sagemaker"
 ![image](./static/2.2.png)
 
 ### Select "Add permissions" and "Attach policies"
@@ -89,12 +89,12 @@ Type the following:
 
 ### Clone the workshop repository
 ```bash
-git clone -b aws-immersion https://github.com/Maurits-de-Groot/weaviate-workshop-1
+git clone -b aws-immersion https://github.com/weaviate-tutorials/weaviate-workshop
 ```
 
 ### Move to the setup folder
 ```bash
-cd weaviate-workshop-1/0-setup/
+cd weaviate-workshop/0-setup/
 ```
 
 ### Ensure that the setup script is executable
