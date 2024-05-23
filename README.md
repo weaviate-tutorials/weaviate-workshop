@@ -38,7 +38,7 @@
 ### Select "Roles"
 ![image](./static/2.1.png)
 
-### Search for the role starting with "sm-studio-canvas" and click on the role name, with trusted entities note "AWS Service: sagemaker"
+### Search for the role starting with "sm-studio-canvas-Sagemaker" and click on the role name, with trusted entities note "AWS Service: sagemaker"
 ![image](./static/2.2.png)
 
 ### Select "Add permissions" and "Attach policies"
