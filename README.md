@@ -21,7 +21,7 @@
 ### Select Enable specific model
 ![image](./static/1.4.png)
 
-### Select all models provided by Amazon 
+### Select all models provided by Amazon
 ![image](./static/1.5.png)
 
 ### Scroll down till you see the next button, and select this button
@@ -38,7 +38,7 @@
 ### Select "Roles"
 ![image](./static/2.1.png)
 
-### Search for the role starting with "sagemaker-immersion-day" and click on the role name, with trusted entities note "AWS Service: sagemaker"
+### Search for the role starting with "sm-studio-canvas" and click on the role name, with trusted entities note "AWS Service: sagemaker"
 ![image](./static/2.2.png)
 
 ### Select "Add permissions" and "Attach policies"
@@ -107,6 +107,6 @@ chmod +x setup.sh
 ./setup.sh
 ```
 
-### Once you see the `Weaviate Endpoint Reachable at: [IP]`, copy the `[IP]` 
+### Once you see the `Weaviate Endpoint Reachable at: [IP]`, copy the `[IP]`
 
 ### Open the `1-intro` folder and paste the `[IP]` in `WEAVIATE_IP`
