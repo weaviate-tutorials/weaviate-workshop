@@ -61,7 +61,7 @@
 ### When seeing the SageMaker landing page, select Domains (under Admin configurations)
 ![image](./static/3.1.png)
 
-### Select the domain called "SageMakerImmersionDayDomain" by clicking on the name
+### Select the domain called "SageMakerImmersionDayDomain" (it may be called "SMStudioWorkshopDomain") by clicking on the name
 ![image](./static/3.2.png)
 
 ### Open "Studio" under "Launch"
