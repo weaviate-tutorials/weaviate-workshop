@@ -93,7 +93,7 @@ tzdata==2024.1
 urllib3==2.2.1
 validators==0.22.0
 wcwidth==0.2.13
-weaviate-client==4.5.4
+weaviate-client==4.6.5
 websockets==12.0
 xxhash==3.4.1
 yarl==1.9.4
