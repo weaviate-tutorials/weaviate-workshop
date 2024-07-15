@@ -1,5 +1,21 @@
 # Weaviate Workshop
 
+## GitHub CodeSpaces instructions
+
+1. Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop)
+
+2. Swith to `open-source`
+
+3. Create a Codespace project
+  * Press the green `Create open-source` button
+  <br/>Or
+  * Press the green `Code` button, then switch to `Codespaces` tab
+  * Press the `+` button
+
+4. Start docker container
+  * In the VS Code, open `_docker` folder
+  * Right click on `docker-compose.yml` and select `Compose Up`
+
 
 ## What you need for the workshop
 
@@ -12,10 +28,15 @@
 
 * Docker Compose (Todo: update this in case we can do it all with WCS)
 
+# Local Setup
+> (if not using GitHub Codespaces)
+
+> Ideally, run this workshop in GitHub Codespaces, see [instructions](#github-codespaces-instructions).
+
 ## How to setup the python environment with venv
 To run the project locally, it is best to setup python environment with venv.
 
-### Setup – do this only once
+### Setup - running locally – do this only once
 First create a new venv configuration.
 ```
 python3 -m venv .venv
@@ -49,27 +70,3 @@ To disconnect from the venv environment, call:
 ```
 source deactivate
 ```
-
-
-## Running the project in GitHub Codespaces
-
-1. Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop).
-
-2. Create a Codespace project
-  * Press the green `Code` button, then switch to `Codespaces` tab.
-  * Press `...` (next to the `+` button) and select `New with options...`
-  * Change the `Machine type` to `4-core` and press the green `Create codespace` button
-
-3. After the codespace is ready – set up the evironment and install the required libraries. Run:
-```
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-4. For "lesson 5", start the `docker-compose-clip.yml` image (and give it a couple of minutes):
-```
-docker compose -f "5-multivec-named-vectors/docker-compose-clip.yml" up -d
-```
-
-5. Install Jupyter notebook extension. You will be asked for it when you open any notebook. Then switch to the .venv image.

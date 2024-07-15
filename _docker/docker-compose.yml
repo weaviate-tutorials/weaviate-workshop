@@ -23,6 +23,10 @@ services:
       DEFAULT_VECTORIZER_MODULE: 'none'
       ENABLE_MODULES: 'text2vec-ollama,generative-ollama,text2vec-aws,generative-aws,text2vec-cohere,generative-cohere,text2vec-openai,generative-openai,text2vec-palm,generative-palm,multi2vec-palm,text2vec-huggingface,text2vec-jinaai,generative-anyscale'
       CLUSTER_HOSTNAME: 'node1'
+  ollama:
+    image: ollama/ollama:0.2.5
+    volumes:
+    - /root/.ollama:/root/.ollama
 volumes:
   weaviate_data:
 ...
