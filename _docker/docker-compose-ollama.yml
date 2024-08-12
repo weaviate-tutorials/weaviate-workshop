@@ -22,7 +22,7 @@ services:
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       DEFAULT_VECTORIZER_MODULE: 'none'
       ENABLE_API_BASED_MODULES: true
-      ENABLE_MODULES: ''
+      ENABLE_MODULES: 'text2vec-ollama,generative-ollama'
       CLUSTER_HOSTNAME: 'node1'
 volumes:  
   weaviate_data:

@@ -5,7 +5,8 @@
   "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
   "features": {
       "ghcr.io/prulloac/devcontainer-features/ollama:1": {
-        "pull": "llama3,snowflake-arctic-embed"
+        // "pull": "llama3,snowflake-arctic-embed"
+        "pull": "gemma2:2b,snowflake-arctic-embed"
       },
       "ghcr.io/devcontainers/features/docker-in-docker:2.9": {} 
   },
