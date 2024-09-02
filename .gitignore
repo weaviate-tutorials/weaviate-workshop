@@ -1,4 +1,4 @@
-.venv
+.venv*
 __pycache__/
 
 # distill files
@@ -8,3 +8,6 @@ __pycache__/
 
 # ignore temp files/folders with names starting with __
 __*
+
+# ignore big files
+*.parquet
