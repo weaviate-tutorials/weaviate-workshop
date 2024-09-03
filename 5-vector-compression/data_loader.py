@@ -3,8 +3,9 @@ from tqdm import tqdm
 from weaviate.util import generate_uuid5
 
 def prepare_dataset():
-    # return load_dataset('parquet', data_files={'train': ['../dataset/openai/*.parquet']}, split="train")
+    # dt = load_dataset('parquet', data_files={'train': ['../dataset/openai/*.parquet']}, split="train", streaming=True)
     dt = load_dataset("weaviate/wiki-sample", "openai-text-embedding-3-small", split="train", streaming=True)
+
     print(f"Loaded Dataset: '{dt.info.dataset_name}' - Config: '{dt.info.config_name}'")
 
     return dt
