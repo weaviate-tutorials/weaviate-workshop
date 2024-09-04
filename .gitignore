@@ -2,7 +2,7 @@
 __pycache__/
 
 # distill files
-**/dl_data/
+# **/dl_data/
 .DS_Store
 
 
