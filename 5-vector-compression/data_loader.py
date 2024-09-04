@@ -3,8 +3,8 @@ from tqdm import tqdm
 from weaviate.util import generate_uuid5
 
 def prepare_dataset():
-    # dt = load_dataset('parquet', data_files={'train': ['../dataset/openai/*.parquet']}, split="train", streaming=True)
-    dt = load_dataset("weaviate/wiki-sample", "openai-text-embedding-3-small", split="train", streaming=True)
+    dt = load_dataset('parquet', data_files={'train': ['../dataset/openai/*.parquet']}, split="train", streaming=True)
+    # dt = load_dataset("weaviate/wiki-sample", "openai-text-embedding-3-small", split="train", streaming=True)
 
     print(f"Loaded Dataset: '{dt.info.dataset_name}' - Config: '{dt.info.config_name}'")
 
@@ -20,7 +20,7 @@ def test_dataset():
         counter -= 1
         if(counter == 0): break
 
-def import_wiki_data(client, collection_name, max_rows=100_000):
+def import_wiki_data(client, collection_name, max_rows=20_000):
     if(client.collections.exists(collection_name) == False):
         print(f"Error: Collection {collection_name} doesn't exist")
         return
@@ -32,7 +32,7 @@ def import_wiki_data(client, collection_name, max_rows=100_000):
 
     counter = 0
 
-    with wiki.batch.fixed_size(batch_size=2500, concurrent_requests=4) as batch:
+    with wiki.batch.fixed_size(batch_size=2000, concurrent_requests=2) as batch:
         for item in tqdm(dataset, total=max_rows):
 
             data_to_insert = {   
