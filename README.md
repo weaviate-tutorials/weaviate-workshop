@@ -30,42 +30,7 @@
 ### Submit the model request
 ![image](./static/1.7.png)
 
-## Setting up the Identity and Access Management (IAM) roles
-
-### Search for IAM in the search bar
-![image](./static/2.0.png)
-
-### Select "Roles"
-![image](./static/2.1.png)
-
-### Search for the role starting with "sm-studio-canvas-Sagemaker" and click on the role name, with trusted entities note "AWS Service: sagemaker"
-![image](./static/2.2.png)
-
-### Select "Add permissions" and "Attach policies"
-![image](./static/2.3.png)
-
-### Add the policy "AmazonBedrockFullAccess"
-![image](./static/2.4.png)
-
-### Add the policy "AmazonECS_FullAccess" and select "Add permissions"
-![image](./static/2.5.png)
-
-### Check that both policies are added
-![image](./static/2.6.png)
-
-## Setting up Amazon SageMaker
-
-### Search for Amazon SageMaker
-![image](./static/3.0.png)
-
-### When seeing the SageMaker landing page, select Domains (under Admin configurations)
-![image](./static/3.1.png)
-
-### Select the domain called "SageMakerImmersionDayDomain" (it may be called "SMStudioWorkshopDomain") by clicking on the name
-![image](./static/3.2.png)
-
-### Open "Studio" under "Launch"
-![image](./static/3.3.png)
+## Using Amazon SageMaker
 
 ### Skip the tour for now
 ![image](./static/3.4.png)
@@ -97,15 +62,7 @@ git clone -b aws-immersion https://github.com/weaviate-tutorials/weaviate-worksh
 cd weaviate-workshop/0-setup/
 ```
 
-### Ensure that the setup script is executable
-```bash
-chmod +x setup.sh
-```
-
-### Run the setup.sh script
-```bash
-./setup.sh
-```
+### Run the `setup.ipynb` notebook
 
 ### Once you see the `Weaviate Endpoint Reachable at: [IP]`, copy the `[IP]`
 
