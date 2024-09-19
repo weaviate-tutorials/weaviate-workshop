@@ -64,6 +64,4 @@ cd weaviate-workshop/0-setup/
 
 ### Run the `setup.ipynb` notebook
 
-### Once you see the `Weaviate Endpoint Reachable at: [IP]`, copy the `[IP]`
-
-### Open the `1-intro` folder and paste the `[IP]` in `WEAVIATE_IP`
+### Once this executes sucessfully you should be ready to get started!
