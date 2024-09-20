@@ -11,3 +11,4 @@ __*
 
 # ignore big files
 *.parquet
+wiki-data

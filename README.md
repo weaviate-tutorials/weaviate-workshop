@@ -1,22 +1,36 @@
 # Weaviate Workshop
 
+## What you need for the workshop
+
+* API Keys for embedding models, like:
+  * OpenAI - [API keys](https://platform.openai.com/settings/profile?tab=api-keys)
+  * etc,
+
 ## GitHub CodeSpaces instructions
 
 1. Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop)
 
-2. Swith to `open-source`
+Make sure you are logged in with GitHub.
 
-3. Create a Codespace project
-  * Press the green `Create open-source` button
-  <br/>Or
-  * Press the green `Code` button, then switch to `Codespaces` tab
-  * Press the `+` button
+2. Create a Codespace project
+  * Press the green `<> Code` button, then switch to `Codespaces` tab.
+  * Press the `Create codespace on main` button.
+  * Your codespace project will install all the necessary components, it will take a few minutes.
 
-4. Start docker container
+## Create a Weaviate Cloud instance
+
+  * Head to [Weaviate Cloud console](https://console.weaviate.cloud/) and log in, or create a new account.
+  * Create a free `Sandbox` cluster. Give it a name, select the cloud region and press "Create".
+
+![wcd create cluster - step 1](img/wcd-create-cluster-1.jpg)
+![wcd create cluster - step 2](img/wcd-create-cluster-2.jpg)
+
+<!-- 4. Start docker container
   * In the VS Code, open `_docker` folder
-  * Right click on `docker-compose.yml` and select `Compose Up`
+  * Right click on `docker-compose.yml` and select `Compose Up` -->
 
 
+<!--
 ## What you need for the workshop
 
 * API Keys for embedding models, like:
@@ -24,7 +38,7 @@
   * Cohere Key
   * etc,
 
-* Python 3.9 or newer
+ * Python 3.9 or newer
 
 * Docker Compose (Todo: update this in case we can do it all with WCS)
 
@@ -70,3 +84,4 @@ To disconnect from the venv environment, call:
 ```
 source deactivate
 ```
+-->

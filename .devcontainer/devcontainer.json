@@ -4,10 +4,6 @@
   "name": "Weaviate Playground",
   "image": "mcr.microsoft.com/devcontainers/python:3.12-bullseye",
   "features": {
-      "ghcr.io/prulloac/devcontainer-features/ollama:1": {
-        // "pull": "llama3,snowflake-arctic-embed"
-        "pull": "gemma2:2b,snowflake-arctic-embed"
-      },
       "ghcr.io/devcontainers/features/docker-in-docker:2.9": {} 
   },
   // Configure tool-specific properties.
@@ -32,7 +28,7 @@
   },
 
 // Use 'postStartCommand' to run commands after the container is started (more frequently than create).
-"postStartCommand": "pip3 install --user -r requirements.txt",
+"postStartCommand": "pip3 install --user -r requirements.txt && python3 prep-data.py",
 
   "hostRequirements": {
       "memory": "16gb",
