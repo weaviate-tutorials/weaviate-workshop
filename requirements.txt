@@ -29,6 +29,7 @@ defusedxml==0.7.1
 dill==0.3.8
 distro==1.9.0
 distyll-info==0.3.1
+dotenv
 executing==2.2.0
 fastavro==1.9.5
 fastjsonschema==2.20.0
