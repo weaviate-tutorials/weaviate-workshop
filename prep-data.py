@@ -33,4 +33,4 @@ def download_source_files(dataset="no-vectors", max_files=1000):
         max_files -= 1
         if(max_files == 0): break
 
-download_source_files("openai/text-embedding-3-small", 10)
+download_source_files("weaviate/snowflake-arctic-v2", 10)
