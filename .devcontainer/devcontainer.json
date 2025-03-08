@@ -2,7 +2,7 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.245.0/containers/python-3
 {
   "name": "Weaviate Playground",
-  "image": "jphwangdata/weaviate-python-dev-env:latest",
+  "image": "databyjp/weaviate-python-dev-env:latest",
   // Configure tool-specific properties.
   "customizations": {
     // Configure properties specific to VS Code.

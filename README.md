@@ -20,7 +20,9 @@ You can follow this workshop using:
 - a [local Devcontainer](#local-devcontainer-setup)
 - [GitHub Codespaces](#github-codespaces-setup)
 
-You can also run the code on your local machine, using your preferred environment manager and package manager. This is not covered in this README.
+We recommend using the local Devcontainer, as you will not be limited by the resources of the Codespaces environment, or your Internet connection.
+
+As another option, you can also run the code on your local machine using your preferred environment manager and package manager. This is not covered in the README.
 
 ### Local Devcontainer setup
 
@@ -31,38 +33,46 @@ You can also run the code on your local machine, using your preferred environmen
 
 #### Installation
 
-First, copy this repository to your local machine:
+Copy this repository to your local machine:
 
 ```shell
 git clone https://github.com/weaviate-tutorials/weaviate-workshop
 ```
 
-Move into the directory:
+Move into the directory and open it in VSCode:
 
 ```shell
 cd weaviate-tutorials
-```
-
-Then, open the project in VSCode:
-
-```shell
 code .
 ```
 
-This will open VSCode.
-
-You may be prompted "Folder contains a Dev Container configuration file. Reopen folder to develop in a container". Click "Reopen in Container".
+If prompted to "Reopen folder to develop in a container". Click "Reopen in Container".
 
 If not:
-- Install the "Dev Containers" extension in VSCode (by Microsoft), if you don't have it already.
+- Install the "Dev Containers" extension in VSCode (by Microsoft).
 - Open the command palette (Ctrl+Shift+P / Cmd+Shift+P) and type "Rebuild and Reopen in Container".
 
 You should see a popup at the bottom right corner, indicating that the project is being reopened in a container.
 
-When the container is ready, you should see a terminal in VSCode.
-- It should include messages from a `pip install ...` command, indicating packages being installed.
-- It should finish with a message like: `Done. Press any key to close the terminal.`
-- Press enter, and you should be in a terminal window, with a prompt such as `/workspaces/weaviate-workshop#`
+When the container is ready, you should see a terminal in VSCode. It should include messages from a `pip install ...` command, and finish with a message like: `Done. Press any key to close the terminal.`
+
+### GitHub CodeSpaces Setup
+
+#### Prerequisites
+
+- Log in to GitHub with your account
+
+#### Instantiation
+
+- Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop)
+
+- Create a Codespace project
+  * Press the green `<> Code` button, then switch to `Codespaces` tab.
+  * Press the `Create codespace on main` button.
+
+## Test your Python environment
+
+You should be in a terminal window, with a prompt such as `/workspaces/weaviate-workshop#`
 
 Run the following command to check that everything is running:
 
@@ -83,25 +93,16 @@ If you are prompted to identify which Python interpreter to use, select the one 
 
 It will include the required packages, such as the Weaviate Python client.
 
-### Option 2 - GitHub CodeSpaces instructions
-
-1. Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop)
-
-Make sure you are logged in with GitHub.
-
-2. Create a Codespace project
-  * Press the green `<> Code` button, then switch to `Codespaces` tab.
-  * Press the `Create codespace on main` button.
-  * Your codespace project will install all the necessary components, it will take a few minutes.
-
 ## Environment variables
 
-Update env vars in .env.
+Update the required env vars, e.g. `WEAVIATE_URL` and `WEAVIATE_KEY` in `.env`. For example:
+
+```shell
+WEAVIATE_URL=https://<YOUR_ENDPOINT>.gcp.weaviate.cloud
+WEAVIATE_KEY=some-api-key
+```
 
 Hint. you can find your Weaviate Cluster URL and API keys in the [WCD console](https://console.weaviate.cloud/).
-
-* WEAVIATE_URL - is the `REST Endpoint`
-* WEAVIATE_KEY - is the `Admin` key in `API Keys`
 
 ## Test your setup
 
