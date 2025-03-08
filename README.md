@@ -16,49 +16,98 @@
 
 ## Running the workshop
 
-### Option 1 - Run locally
+You can follow this workshop using:
+- a [local Devcontainer](#local-devcontainer-setup)
+- [GitHub Codespaces](#github-codespaces-setup)
 
-#### Virtual environment – do this only once
-First create a new venv configuration.
+We recommend using the local Devcontainer, as you will not be limited by the resources of the Codespaces environment, or your Internet connection.
+
+As another option, you can also run the code on your local machine using your preferred environment manager and package manager. This is not covered in the README.
+
+### Local Devcontainer setup
+
+#### Prerequisites
+
+- Install VSCode (https://code.visualstudio.com/download)
+- Install Docker (https://www.docker.com/products/docker-desktop/)
+
+#### Installation
+
+Copy this repository to your local machine:
+
+```shell
+git clone https://github.com/weaviate-tutorials/weaviate-workshop
 ```
-python3 -m venv .venv
+
+Move into the directory and open it in VSCode:
+
+```shell
+cd weaviate-tutorials
+code .
 ```
 
-Then switch to the new configuration:
-```
-source .venv/bin/activate
-```
+If prompted to "Reopen folder to develop in a container". Click "Reopen in Container".
 
-And install the required packages.
-```
-pip install -r requirements.txt
-```
+If not:
+- Install the "Dev Containers" extension in VSCode (by Microsoft).
+- Open the command palette (Ctrl+Shift+P / Cmd+Shift+P) and type "Rebuild and Reopen in Container".
 
-### Option 2 - GitHub CodeSpaces instructions
+You should see a popup at the bottom right corner, indicating that the project is being reopened in a container.
 
-1. Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop)
+When the container is ready, you should see a terminal in VSCode. It should include messages from a `pip install ...` command, and finish with a message like: `Done. Press any key to close the terminal.`
 
-Make sure you are logged in with GitHub.
+### GitHub CodeSpaces Setup
 
-2. Create a Codespace project
+#### Prerequisites
+
+- Log in to GitHub with your account
+
+#### Instantiation
+
+- Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop)
+
+- Create a Codespace project
   * Press the green `<> Code` button, then switch to `Codespaces` tab.
   * Press the `Create codespace on main` button.
-  * Your codespace project will install all the necessary components, it will take a few minutes.
 
+## Test your Python environment
 
-## Env vars
+You should be in a terminal window, with a prompt such as `/workspaces/weaviate-workshop#`
 
-Update env vars in .env.
+Run the following command to check that everything is running:
+
+```shell
+python check-env.py
+```
+
+You should see an output, similar to:
+
+```shell
+Python version: 3.11.11 (main, Feb 25 2025, 09:36:46) [GCC 10.2.1 20210110]
+Weaviate Python Client package version: 4.11.0
+```
+
+Then, you are good to go.
+
+If you are prompted to identify which Python interpreter to use, select the one that is in the `/usr/local/bin/python` directory. This is the Python interpreter in the container.
+
+It will include the required packages, such as the Weaviate Python client.
+
+## Environment variables
+
+Update the required env vars, e.g. `WEAVIATE_URL` and `WEAVIATE_KEY` in `.env`. For example:
+
+```shell
+WEAVIATE_URL=https://<YOUR_ENDPOINT>.gcp.weaviate.cloud
+WEAVIATE_KEY=some-api-key
+```
 
 Hint. you can find your Weaviate Cluster URL and API keys in the [WCD console](https://console.weaviate.cloud/).
-
-* WEAVIATE_URL - is the `REST Endpoint`
-* WEAVIATE_KEY - is the `Admin` key in `API Keys`
 
 ## Test your setup
 
 Head to [1-intro/0-prep-run.ipynb](./1-intro/0-prep-run.ipynb), and run through all steps.
 
-## Download the prevectorized data
+## Download the pre-vectorized data
 
 Head to [prep-data.ipynb](./prep-data.ipynb) and run all the cells. This should download the data we will use in the second lesson.
