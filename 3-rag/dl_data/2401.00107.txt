@@ -1,1637 +1,0 @@
-
-Radius extrapolations for two-body bound states in finite volume
-Anderson Taurence1,∗and Sebastian K¨ onig1,†
-1Department of Physics, North Carolina State University, Raleigh, NC 27695, USA
-Simulations of quantum systems in finite volume have proven to be a useful tool for calculating
-physical observables. Such studies to date have focused primarily on understanding the volume
-dependence of binding energies, from which it is possible to extract asymptotic properties of the
-corresponding bound state, as well as on extracting scattering information. For bound states, all
-properties depend on the size of the finite volume, and for precision studies it is important to
-understand such effects. In this work, we therefore derive the volume dependence of the mean
-squared radius of a two-body bound state, using a technique that can be generalized to other static
-properties in the future. We test our results with explicit numerical examples and demonstrate that
-we can robustly extract infinite-volume radii from finite-volume simulations in cubic boxes with
-periodic boundary conditions.
-I. INTRODUCTION
-Finite-volume (FV) simulations of quantum systems in
-periodic cubic boxes are a powerful tool that is used to
-study properties of nuclear bound states and scattering.
-A series of highly influential papers [1–3] established in
-the 1980s and 90s that real-world properties of a quan-
-tum system are encoded in how its discrete energy levels
-change as volume size is varied. Over the past decades,
-this fruitful idea has spurred a lot of activity, with re-
-cent focus on the study of three-body systems [4–22],
-motivated primarily by applications to Lattice Quantum
-Chromodynamics (Lattice QCD). For two-cluster bound
-states, the volume dependence of the binding energy is
-known for an arbitrary number of constituents [23]. Re-
-cent work derived the volume dependence of two-body
-bound states comprised of charged particles, with full
-nonperturbative account for the repulsive Coulomb in-
-teraction [24], and Ref. [25] extended the method to res-
-onances. An important motivation for understanding the
-volume dependence of bound states is that knowledge of
-the functional form makes it possible to extract asymp-
-totic normalization coefficients (ANCs) from FV calcula-
-tions, for example based on Lattice Effective Field The-
-ory (Lattice EFT) simulations of atomic nuclei [26–30].
-In this paper, we extend studies of the volume depen-
-dence for bound states beyond what is known for bind-
-ing energies. As simplest observable, we consider mean
-squared radii, ⟨r2⟩, of two-body bound states, defined (in
-more detail in the following section) as the expectation
-value of an operator that measures the average distance
-of the constituents from their common center of mass.
-Just like the binding energy, ⟨r2⟩will be shifted from its
-physical value in FV, and the magnitude of this shift can
-be traced back to changes in the wave function induced
-by being confined to a periodic box. We derive in de-
-tail the functional form of the radius finite-volume shift,
-which makes it possible to perform extrapolations from
-∗ajtauren@ncsu.edu
-†skoenig@ncsu.edua set of finite-volume calculations to the real world, i.e.,
-infinite volume.
-Unlike the binding energy, which is known to depend,
-to leading exponential order, only on asymptotic prop-
-erties of the wave function (and is thus universal with
-respect to the details of the short-range interaction that
-gives rise to the bound state [1, 23, 24, 31, 32]), one
-should expect ⟨r2⟩to be sensitive in principle to the form
-of the wave function at all relative distances. This has
-indeed been observed for radii and other static proper-
-ties of bounds states calculated in truncated harmonic
-oscillator bases [33–35].
-We derive in this work analytical expressions for the
-leading volume dependence of the mean-squared radius
-for two-body states bound by a short-range interaction.
-Based on an appropriate ansatz for the relevant volume
-dependence of the wave function, we obtain explicit for-
-mulas for states within the A+
-1andT−
-1representations
-of the cubic symmetry group, which correspond approx-
-imately to S- and P-wave states in infinite volume. A
-constructive prescription is given for the general case.
-Our results are relevant for example for Lattice QCD
-studies of the deuteron radius, and the formalism we de-
-velop paves the way for deriving analogous relations for
-other static observables, as well as for bound states com-
-prised of more than two particles. Relations of this form
-will have applications not only in Lattice QCD studies of
-multi-nucleon bound states, but also to precision studies
-of atomic nuclei with Lattice EFT.
-This paper is organized as follows. In Sec. II we de-
-velop the formalism for deriving the finite-volume radius
-shift ∆
-r2
-(L), starting with a discussion of how the
-bound-state wave function changes when it is confined
-to the periodic box. Subsequently, in Sec. III we present
-closed-form analytical expressions that describe the ra-
-dius shift for bound states within the A+
-1andT−
-1cubic
-representations and we verify these the results with ex-
-plicit numerical calculations. Finally, in Sec. IV we close
-with a summary and outlook.arXiv:2401.00107v1  [nucl-th]  30 Dec 2023
-2
-II. FORMALISM
-A. General setup in infinite volume
-We consider a system of two particles with reduced
-mass µand relative coordinate denoted rinteracting via
-a finite-range, spherically symmetric potential, i.e., for
-R >0 and
-B=
-x∈R3:|x| ≤R	
-, (1)
-it holds that
-V(r,r′) = 0 if r,r′/∈B , (2)
-andVdepends only on the magnitude of randr′. To
-be as general as possible, we allow Vto have a nonlocal
-form and we emphasize that our main results to do not
-depend on the detailed form of V(r,r′). We furthermore
-note that although for convenience we assume a strict
-finite range Rin the following, our results remain valid
-with negligible corrections for short-range potentials that
-fall off faster than any power law at large distances.
-We write the Schr¨ odinger equation for a state |ψ⟩as
-ˆH|ψ⟩=E|ψ⟩, (3)
-with the Hamiltonian given by
-ˆHψ(r) =−1
-2µ∇2ψ(r) +Z
-d3r′V(r,r′)ψ(r′).(4)
-We define |ψ∞⟩to be a solution with positive binding
-energy E∞such that
-ˆH|ψ∞⟩=−E∞|ψ∞⟩. (5)
-Forr/∈Bthe Hamiltonian simplifies to
-ˆHψ(r)r/∈B=−1
-2µ∇2ψ(r) (6)
-and we can write the asymptotic wave function as
-ψ∞(r)r/∈B≡ψ∞,asm(r) =−iℓγh(1)
-ℓ(iκr)Ym
-ℓ(r/r),(7)
-where h(1)
-ℓis the spherical Hankel function of the first
-kind and
-κ2= 2µE∞. (8)
-The asymptotic normalization coefficient (ANC) γis
-fixed via the normalization condition ⟨ψ∞|ψ∞⟩= 1 and
-Eq. (??). For later use we also define a state |ψE,asm⟩
-to be the purely asymptotic form of a bound state with
-binding energy E, satisfying
-ˆHψE,asm(r)r/∈B=−EψE,asm(r). (9)
-We are not making any assumption here about the be-
-havior of ψE,asm(r) forr∈Band just note that in all
-applications ψE,asmwill be multiplied by an indicator
-function that is zero for r∈B.B. Finite-volume wave function
-Now we consider the same system confined to a cu-
-bic periodic box of edge length L≫R. The potential
-becomes periodic, taking the form
-VL(r,r′) =X
-nV(r+nL,r′+nL), (10)
-and it satisfies
-VL(r,r′) = 0 if r∈Aorr′∈A , (11)
-where A, called the asymptotic domain, is defined as
-A=
-x∈R3: (x+nL)/∈B∀n∈Z3	
-. (12)
-The action of the finite-volume Hamiltonian on a generic
-state|ψ⟩, written in configuration space, is then
-ˆHLψ(r) =−1
-2µ∇2ψ(r) +Z
-d3r′VL(r,r′)ψ(r′)
-=ˆHψ(r) +X
-|n|̸=0Z
-d3r′V(r+nL,r′+nL)ψ(r′)
-r∈B∪A= ˆHψ(r).
-(13)
-The exact finite-volume bound state ψL(r) has an en-
-ergy−E(L) that depends on the size of the box. We
-relate the infinite and finite volume-binding energies via
-E(L) =E∞+ ∆E(L), (14)
-where ∆ E(L) is called the energy shift and has been
-investigated extensively for various systems [1, 23, 24,
-31, 32]. In the derivation that follows we therefore treat
-∆E(L) as a known quantity and we will frequently make
-use of the fact that
-∆E(L) =O 
-e−κL
-. (15)
-The finite-volume wave function must be a solution
-to the finite-volume Schr¨ odinger equation with energy
-−E(L) that obeys the periodic boundary condition. In
-the remainder of this section, we work out an ansatz for
-this periodic finite-volume wave function that will form
-the basis for our derivation of the radius volume depen-
-dence.
-Asymptotic solution Based on the observation that
-the infinite and finite-volume Hamiltonians are equal in
-the asymptotic domain, we make the ansatz that an
-asymptotic solution in finite volume is of the following
-form (analogous to what is used in Refs. [33, 34, 36],
-based on the “linear energy method” of Ref. [37]):
-ψasm(r) =χA(r)"
-ψ∞,asm(r)
-+ ∆E(L)d
-dEψE,asm(r)
-E=E∞#
-+O 
-∆E(L)2
-.(16)
-3
-This means we consider the wave function as a function
-of the energy and relate the volume dependence to an
-energy dependence via E=E(L), allowing us to Taylor-
-expand around infinite volume and keep the linear termexplicitly. We include χA(r), the indicator function of
-A, to conveniently set the state to zero outside of the
-asymptotic domain. If we act on |ψasm⟩with ˆHLin the
-asymptotic domain, we find
-ˆHLψasm(r)r∈A=ˆHψasm(r) =χA(r)"
-ˆHψ∞,asm(r) + ∆ E(L)d
-dEˆHψE,asm(r)
-E=E∞#
-+O 
-∆E(L)2
-=χA(r)"
-−E∞ψ∞,asm(r)−∆E(L)d
-dEEψE,asm(r)
-E=E∞#
-+O 
-∆E(L)2
-=χA(r)"
-−E∞ψ∞,asm(r)−∆E(L)ψ∞,asm(r)−∆E(L)E∞d
-dEψE,asm(r)
-E=E∞#
-+O 
-∆E(L)2
-=−(E∞+ ∆E(L))χA(r)"
-ψ∞,asm(r) + ∆ E(L)d
-dEψE,asm(r)
-E=E∞#
-+O 
-∆E(L)2
-=−E(L)ψasm(r) +O 
-∆E(L)2
-.
-(17)
-Therefore, to leading order, |ψasm⟩solves the finite vol-
-ume Schr¨ odinger equation with energy −E(L) restricted
-to the asymptotic domain.
-Now we intend to find a periodic solution based on
-|ψasm⟩. We introduce a translation operator defined via
-
-rˆT(n)ψ
-=ψ(r+nL), (18)
-from which it follows that
-
-ψˆT†(n)r
-=ψ∗(r+nL). (19)
-It holds that
-ˆT†(n) =ˆT(−n) (20)
-because
-
-ϕˆT†(n)ψ
-=Z
-d3rϕ∗(r+nL)ψ(r)
-=Z
-d3rϕ∗(r)ψ(r−nL)
-=
-ϕˆT(−n)ψ
-.(21)
-Translation operators also have the property
-ˆT(n)ˆT(m) =ˆT(n+m). (22)
-Using translation operators we can construct the asymp-
-totic finite-volume wave function by adding shifted copies
-of|ψasm⟩to satisfy the periodic boundary condition. This
-leads to:
-|ψL,asm⟩=X
-nˆT(n)|ψasm⟩. (23)
-Due to the linearity of the Schr¨ odinger equation and the
-fact that the finite-volume Hamiltonian commutes with
-our translation operators, |ψL,asm⟩also satisfies the fi-
-nite volume Schr¨ odinger equation with energy −E(L),
-restricted to the asymptotic domain.
-R
-LB A CFigure 1. Illustration showing the sets B,A, and Cin a
-2D analogy of the 3D scenario we consider. The central box
-C, cf. Eq. (37), is shown with neighboring periodic copies
-surrounding it.
-Interior solution Now that we have found an asymp-
-totic solution, we must find a solution for r/∈A. We need
-only find an appropriate form for r∈B, since periodic
-copies of this set cover AC, illustrated in Fig. 1.
-By our previous discussion, we know that ψ∞(r) is an
-approximate solution for r∈Bup to corrections of the
-order O 
-e−κL
-. Specifically, by Eqs. (14) and (15) it
-4
-holds that
-ˆHLψ∞(r)r∈B=ˆHψ∞(r) =−E(L)ψ∞(r) +O 
-e−κL
-.
-(24)
-Therefore we make the ansatz that an exact finite-volume
-solution for r∈Bis of the form
-ψint(r) =χB(r)h
-ψ∞(r) +ϕ(r)i
-, (25)
-where ϕ(r) is some correction of order O 
-e−κL
-, the de-
-tailed form of which we need not know. This state must
-satisfy
-ˆHLψint(r)r∈B=ˆHψint(r) =−E(L)ψint(r). (26)
-Expanding the left-hand side we get
-ˆHψint(r) =χB(r)h
-−E∞ψ∞(r) +ˆHϕ(r)i
-. (27)
-Expanding also the right-hand side gives
-−E(L)ψint(r) =−χB(r)(E∞+ ∆E(L))h
-ψ∞(r) +ϕ(r)i
-,
-(28)
-and combining the two previous equations we obtain adifferential equation for ϕ(r):
-χB(r)ˆHϕ(r) =−χB(r)h
-E∞ϕ(r) + ∆ E(L)ψ∞(r)i
-+O 
-e−2κL
-.(29)
-If we make the substitution |ϕ⟩= ∆E(L)|φ⟩, we get
-χB(r)ˆHφ(r) =−χB(r)h
-E∞φ(r) +ψ∞(r)i
-+O 
-e−κL
-.(30)
-Now we make the observation that the differential equa-
-tion defining φ(r) is independent of Lto leading order.
-If the boundary conditions on φ(r) are also independent
-ofLto leading order then we can conclude that the Lde-
-pendence of ϕ(r) must be limited to the factor of ∆ E(L)
-at this order.
-We can fix two separate boundary conditions for φ(r).
-For the first one, we use the fact that parity remains a
-good quantum number in finite volume, so all states will
-have either even or odd parity. For even parity states,
-the derivative of the wave function at the origin must
-vanish along all three axes. For odd parity states, the
-wave function must vanish at the origin. Since ψint(r)
-andψ∞(r) have definite parities, φ(r) must also have a
-definite parity by Eq. (25), and therefore we obtain that
-either φ(r) or its derivatives must vanish at the origin,
-and this condition is independent of L. For the second
-boundary condition we impose continuity between ψint
-andψL,asm:
-ψint(r)
-|r|=R=ψL,asm(r)
-|r|=R(31a)
-ψ∞(r) + ∆ E(L)φ(r)
-|r|=R=X
-nˆT(n)ψasm(r)
-|r|=R(31b)
-ψ∞(r) + ∆ E(L)φ(r)
-|r|=R=X
-nˆT(n)
-ψ∞,asm(r) + ∆ E(L)d
-dEψE,asm(r)
-E=E∞,|r|=R(31c)
-ψ∞(r) + ∆ E(L)φ(r)
-|r|=R=ψ∞,asm(r) + ∆ E(L)d
-dEψE,asm(r)
-E=E∞,|r|=R+X
-|n|=1ψ∞,asm(nL) +O
-e−√
-2κL
-(31d)
-φ(r)
-|r|=R=d
-dEψE,asm(r)
-E=E∞,|r|=R+1
-∆E(L)X
-|n|=1ψ∞,asm(nL) +O
-e(1−√
-2)κL
-. (31e)
-For this boundary condition to be independent of Lto
-leading order, it must be true that
-1
-∆E(L)X
-|n|=1ψ∞,asm(nL) = const. + O
-e(1−√
-2)κL
-.
-(32)Although this is not true in general, it trivially holds for
-any odd parity state since Eq. (32) evaluates to zero. We
-note that it also happens to hold for a number of even
-parity states, most notably the S-wave. In this paper
-we focus exclusively on S- and P-waves, for which this
-condition is known to hold. However, the following argu-
-5
-ments work for any state as long as it can be shown that
-Eq. (32) holds.
-Based on Eq. (30) and the boundary conditions, we
-conclude that indeed φ(r) is independent of Lto leading
-order for at least S- and P-wave states, and we write
-ψint(r) =χB(r)h
-ψ∞(r) + ∆ E(L)φ(r)i
-+O
-e−√
-2κL
-,
-(33)
-where all leading order Ldependence is now explicitly
-accounted for. Just as before, we can make this solution
-periodic by adding shifted copies:
-|ψL,int⟩=X
-nˆT(n)|ψint⟩. (34)
-Full construction Finally, we can join our two solu-
-tions to get the full finite-volume wave function:
-|ψL⟩=|ψL,asm⟩+|ψL,int⟩=X
-nˆT(n) (|ψint⟩+|ψasm⟩).
-(35)
-|ψL,asm⟩and|ψL,int⟩are both periodic solutions to
-ˆHL|ψ⟩=−E(L)|ψ⟩ (36)
-to order O
-e−√
-2κL
-. By linearity, |ψL⟩must also be such
-a solution. In addition, |ψL⟩is periodic and continuous.
-In the next section we will only need the form of ψL(r)
-forr∈C, where
-C=
-−L
-2,L
-23
-. (37)
-Therefore, we drop the unused shifted copies of |ψint⟩and
-rearrange:
-|ψL⟩r∈C=|ψ∞⟩+∆E(L)|δ⟩+X
-|n|̸=0ˆT(n)|ψa⟩+O 
-e−2κL
-,
-(38)
-where
-|δ⟩=χB(r)|φ⟩+χA(r)d
-dE|ψE,asm⟩
-E=E∞.(39)C. Radius shift
-1. Definition
-In general, we define the mean squared radius of a state
-as the expectation value of the operator
-ˆr2=1
-NNX
-i=1(ˆri−ˆR)2, (40)
-where Nis the number of particles, ˆriis the position
-operator of the ithparticle, and ˆRis the center-of-mass
-position operator. Since we work in coordinate represen-
-tation we will drop the hats for these operators in the
-following. For two particles, we have
-r1=R+1
-2r, (41a)
-r2=R−1
-2r, (41b)
-where r=r2−r1is the relative coordinate. Plugging this
-into Eq. (40), we find that the mean squared radius ex-
-pectation value for two particles can be written in terms
-of their relative coordinate simply as
-
-r2
-=1
-4
-r2
-. (42)
-The finite-volume radius shift ∆
-r2
-(L) is defined as
-∆
-r2
-(L) =
-r2
-(L)−
-r2
-∞
-, (43)
-where
-r2
-(L) is
-
-r2
-(L) =1
-4
-ψLr2χC(r)ψL
-⟨ψL|χC(r)|ψL⟩. (44)
-so ∆
-r2
-(L) can be written as
-∆
-r2
-(L) =1
-4
-ψLr2χC(r)ψL
-⟨ψL|χC(r)|ψL⟩−
-r2
-∞
-. (45)
-The matrix elements in the numerator and denominator
-of Eq. (45) can all be written in the form
-⟨ψL|rnχC(r)|ψL⟩, (46)
-where n= 0 in the denominator and n= 2 in the numer-
-ator.
-2. Expansion
-Upon expanding the sums over shifted copies stem-
-ming from the definition of |ψL⟩in Eq. (46), we get the
-following terms
-6
-⟨ψL|rnχC(r)|ψL⟩=
-ψ∞rnχC(r)ψ∞
-+ 2∆ E(L)Re
-ψ∞rnχC(r)δ
-+X
-|n|̸=02Reh
-ψ∞rnχC(r)ˆT(n)ψasmi
-+X
-|n|̸=0
-|m|̸=0
-ψasmˆT(−n)rnχC(r)ˆT(m)ψasm
-+O 
-e−2κL
-.(47)
-We can add zero to the first term in the form of
-⟨ψ∞|rnχC(r)|ψ∞⟩=⟨ψ∞|rnχC(r)|ψ∞⟩+X
-|n|̸=0⟨ψ∞|rnχC(r−nL)|ψ∞⟩ −X
-|n|̸=0⟨ψ∞|rnχC(r−nL)|ψ∞⟩, (48)
-which allows us to absorb the lone term into the first
-sum:
-⟨ψ∞|rnχC(r)|ψ∞⟩=X
-n⟨ψ∞|rnχC(r−nL)|ψ∞⟩
-−X
-|n|̸=0⟨ψ∞|rnχC(r−nL)|ψ∞⟩.(49)
-χC(r−nL) simply sums to 1 over all n, so
-⟨ψ∞|rnχC(r)|ψ∞⟩=⟨ψ∞|rn|ψ∞⟩
-−X
-|n|̸=0⟨ψ∞|rnχC(r−nL)|ψ∞⟩.(50)
-We write ⟨ψ∞|rn|ψ∞⟩as⟨rn
-∞⟩and therefore we get:
-⟨ψ∞|rnχC(r)|ψ∞⟩=⟨rn
-∞⟩
-−X
-|n|̸=0⟨ψ∞|rnχC(r−nL)|ψ∞⟩.(51)
-Expanding also the second term in Eq. (47), we find
-2∆E(L) Reh
-⟨ψ∞|rnχC(r)|δ⟩i
-= 2∆ E(L) Re
-⟨ψ∞|rnχB(r)|φ⟩
-+
-ψ∞rnχC∩A(r)d
-dEψE,asm
-E=E∞
-.(52)
-The first term in the square brackets on the right-hand
-side contains no Ldependence, and since we do not ex-
-plicitly know the form of ψ∞(r) for all r, we choose to
-parameterize the entire term by a constant β′
-n. More-
-over, since ψE,asm(r) decays exponentially for large r,
-anyLdependence introduced by the second term will
-contribute only some decaying exponential in L. Since
-the right-hand side overall is already contains a factor
-of ∆E(L), the Ldependence from the second term turns
-out to be of higher exponential order and can therefore be
-dropped. Altogether, neither matrix element in Eq. (52)
-directly contributes to the leading Ldependence and so
-we can combine them into a single constant βn:
-2∆E(L) Re⟨ψ∞|rnχC(r)|δ⟩=βn∆E(L)
-+O
-e−√
-2κL
-.(53)Turning to the third term in Eq. (47), since ψasm(r) is
-always shifted by at least a distance L, and because the
-second term in the definition of ψasm(r), Eq. (16), is al-
-ready suppressed by a factor ∆ E(L), that part is overall
-beyond leading exponential order and may be dropped.
-Effectively, we may replace ψasm(r) with ψ∞,asm(r), and
-we can furthermore replace ψ∞(r) with the asymptotic
-form because it will only ever be evaluated in the asymp-
-totic region. We therefore arrive at
-X
-|n|̸=02Re
-ψ∞rnχC(r)ˆT(n)ψasm
-=X
-|n|=12Re
-ψ∞,asmrnχC(r)ˆT(n)χA(r)ψ∞,asm
-+O
-e−√
-2κL
-,(54)
-where we have also made use of the fact that only |n|= 1
-terms contribute to leading exponential order.
-Finally, for the fourth term in Eq. (47), we can again
-note that the second term of ψasm(r) will contribute only
-beyond leading exponential order since it is shifted by
-at least Land suppressed by ∆ E(L). Therefore, we can
-replace ψasm(r) with χA(r)ψ∞,asm(r) and obtain
-X
-|n|̸=0
-|m|̸=0
-ψasmˆT(−n)rnχC(r)ˆT(m)ψasm
-=X
-|n|̸=0
-|m|̸=0
-ψ∞,asmˆT(−n)rnχC∩A(r)ˆT(m)ψ∞,asm
-+O
-e−√
-2κL
-.(55)
-Commuting the ˆT(−n) operator to the right furthermore
-gives
-X
-|n|̸=0
-|m|̸=0
-ψasmˆT(−n)rnχC(r)ˆT(m)ψasm
-=X
-|n|̸=0
-|m|̸=0
-ψ∞,asm(r−nL)nχC∩A(r−nL)
-×ˆT(m−n)ψ∞,asm
-+O
-e−√
-2κL
-.(56)
-7
-The only case in which this is of leading exponential order is when n=mand when their magnitude is 1, so
-X
-|n|̸=0
-|m|̸=0
-ψasmˆT(−n)rnχC(r)ˆT(m)ψasm
-=X
-|n|=1
-ψ∞,asm(r−nL)nχC∩A(r−nL)ψ∞,asm
-+O
-e−√
-2κL
-.(57)
-We can make the substitution χC∩A(r−nL)→χC(r−
-nL) since including the shifted Bin the integration do-
-main only makes a less-than-leading order difference over
-the product of shifted wave functions:
-X
-|n|̸=0
-|m|̸=0
-ψasmˆT(−n)rnχC(r)ˆT(m)ψasm
-=X
-|n|=1
-ψ∞,asm(r−nL)nχC(r−nL)ψ∞,asm
-+O
-e−√
-2κL
-. (58)
-Reassembling all the simplified terms back into Eq. (47), we get:
-⟨ψL|rnχC(r)|ψL⟩=⟨rn
-∞⟩+βn∆E(L) +X
-|n|=1
-ψ∞,asm((r−nL)n−rn)χC(r−nL)ψ∞,asm
-+ 2Reh
-ψ∞,asmrnχC∩A(r)ˆT(n)ψ∞,asmi
-+O
-e−√
-2κL
-.(59)
-Plugging this then into Eq. (45) and expanding to leading exponential order, we arrive at
-∆
-r2
-(L) =α∆E(L) +X
-|n|=1
-ψ∞,asm1
-4(L2−2r·nL)χC(r−nL)ψ∞,asm
-+ Re
-ψ∞,asm1
-2(r2−4
-r2
-∞
-)χC∩A(r)ˆT(n)ψ∞,asm
-+O
-e−√
-2κL
-,(60)
-where α=1
-4β2−
-r2
-∞
-β0is a parameter that must be fit by data.
-3. Simplification
-We now focus on simplifying both terms. To that end,
-we write Eq. (60) in shorthand notation as
-∆
-r2
-(L)
-=α∆E(L) + Re ⟨ψ∞,asm|ˆη|ψ∞,asm⟩+O
-e−√
-2κL
-,
-(61)
-where
-ˆη=X
-|n|=11
-4(L2−2r·nL)χC(r−nL)
-+1
-2
-r2−4
-r2
-∞
-χC∩A(r)ˆT(n)
-.(62)
-Note that we define ˆ ηas an operator, but choose to write
-it explicitly in terms of r, with the understanding thatthis is equivalent to writing ˆrwhen we specify that ˆ η
-is local in coordinate space, ⟨r′|ˆη|r⟩=η(r)δ(3)(r−r′).
-Also note that the following manipulations of ˆ ηare done
-with the understanding that ˆ ηwill be evaluated between
-wave functions as in Eq. (61). All matrix elements are
-computed in configuration space, which is what we refer
-to as “integration” in the following.
-We define the rotation operator ˆR(n) that maps the
-vector nonto the direction of ˆz. This definition does not
-uniquely describe a particular rotation, however, the am-
-biguity does not matter for our purposes. For example,
-we say that
-ˆR(n)ˆT(n)ˆR†(n) =ˆT(ˆz). (63)
-We note that
-ˆR†(n) =ˆR−1(n). (64)
-8
-Because of this we can insert the identity ˆR†(n)ˆR(n) any-
-where we would like. Inserting this identity into ˆ ηand
-commuting the operators to opposite sides, we get
-ˆη=X
-|n|=1ˆR†(n)1
-4(L2−2zL)χC(r−ˆzL)
-+1
-2
-r2−4
-r2
-∞
-χC∩A(r)ˆT(ˆz)
-ˆR(n).(65)
-Since the real part will be taken at the end as per our
-previous manipulations, we take the hermitian conjugate
-of the second term and then commute the translation
-operator back to the right, leading to:
-ˆη=X
-|n|=1ˆR†(n)1
-4(L2−2zL)χC(r−ˆzL)
-+1
-2
-(r−ˆzL)2−4
-r2
-∞
-χC∩A(r−ˆzL)ˆT(−ˆz)
-ˆR(n).
-(66)
-We can make the substitution χC(r−ˆzL)→χP(r), where
-P={x∈R3:x·ˆz> L/ 2}, (67)
-illustrated in Fig. 2. This substitution does not cause a
-leading-order change, so we write
-ˆη=X
-|n|=1ˆR†(n)1
-4(L2−2zL)χP(r)
-+1
-2
-(r−ˆzL)2−4
-r2
-∞
-χP∩A(r)ˆT(−ˆz)
-ˆR(n).(68)
-We may furthermore insert the function χA(r) into the
-first term without introducing a leading-order change.
-This makes the indicator function conveniently identical
-for both terms:
-ˆη=X
-|n|=1ˆR†(n)χP∩A(r)1
-4(L2−2zL)
-+1
-2
-(r−ˆzL)2−4
-r2
-∞ˆT(−ˆz)
-ˆR(n).(69)
-We can write this now as
-ˆη=X
-|n|=1ˆR†(n)ˆξˆR(n), (70)
-where
-ˆξ=χP∩A(r)1
-4(L2−2zL)
-+1
-2((r−ˆzL)2−4
-r2
-∞
-)ˆT(−ˆz)
-.(71)
-ˆz
-LχC(r)χC(r−ˆzL)χP(r)Figure 2. Illustration showing the indicator functions of the
-setsCandPin a 2D analogy. The central box is shown at
-the bottom with neighboring periodic copies surrounding it.
-Note that Pextends infinitely from the edges of the figure.
-Finally, we arrive at the final simplified form:
-∆
-r2
-(L) =α∆E(L)
-+ Re
-X
-|n|=1D
-ˆR(n)ψ∞,asmˆξˆR(n)ψ∞,asmE
-
-+O
-e−√
-2κL
-.(72)
-Depending on the actual (cubic) symmetry properties of
-ψ∞,asm, some of the terms in the sum may not need to
-be computed. For example, for the finite-volume ana-
-log of an S-wave state (discussed in more detail below),
-ˆR(n)ψ∞,asm(r) =ψ∞,asm(r) for all rotations ˆR(n), so all
-the terms in the sum are identical and only one needs to
-be evaluated explicitly.
-4. Coordinate transformation
-Now we present a coordinate system in which the quan-
-tity⟨ψ|ˆξ|ψ⟩is relatively straightforward to compute in
-closed form. We use a two-center bispherical coordinate
-system parameterized by r,u, and ϕ, where ris the dis-
-tance from the origin, uis the distance from the origin
-of the neighboring periodic box in the ˆzdirection, and ϕ
-is the azimuthal angle about the zaxis. The valid set of
-coordinates is given by
-{(r, u, ϕ )∈[0,∞)×[0,∞)×[0,2π) :r+u≥L}.(73)
-9
-For reference, we note that the transformation to Carte-
-sian coordinates is provided by
-x=s
-r2−(L2+r2−u2)2
-4L2cosϕ , (74)
-y=s
-r2−(L2+r2−u2)2
-4L2sinϕ , (75)
-z=L2+r2−u2
-2L. (76)
-The volume element in the ( r, u, ϕ ) coordinate system has
-the simple form
-d3r=ru
-Ldrdudϕ . (77)
-The main advantage of using this coordinate system is
-that
-ˆT(−ˆz)r=|r−ˆzL|=u , (78)
-so integrals over shifted radial functions are just as simple
-as integrals over unshifted radial functions. The trade-
-off, however, is that the bounds of the integration do-
-main become more complicated, especially given that
-not all coordinate values are valid. With this in mind,
-the bounds of integration with the indicator function
-χP∩A(r) become
-Z
-χP∩A(r). . .d3r=ZL/2
-RZL+u
-L−uZ2π
-0. . .ru
-Ldϕdrdu
-+Z∞
-L/2Z∞
-uZ2π
-0. . .ru
-Ldϕdrdu .(79)
-In the ( r, u, ϕ ) coordinate system, ˆξhas the form
-ˆξ=χP∩A(r)1
-4(u2−r2) +1
-2(u2−4
-r2
-∞
-)ˆT(−ˆz)
-.
-(80)
-The coordinate system described above allows us to
-obtain closed-form expressions for the finite-volume ra-
-dius shift for certain important cases, which we present
-in the following section. We use this formalism to derive
-explicit analytical expressions for the radius shift for S-
-and P-wave states shown in Sec. III B, with details of the
-calculation presented in the appendix.
-III. RESULTS
-A. Broken spherical symmetry
-As already alluded to before, spherical symmetry is
-broken by confining the system to a periodic cubic box,
-and as a consequence angular momentum ℓis not a
-good quantum number anymore. The relevant spatialsymmetry is instead described by the group of rota-
-tions that leave a cube invariant. The structure of
-this group is well known and has been discussed, for
-example, in Ref. [38]. Angular-momentum multiplets
-in general break up into irreducible representations of
-the cubic group, of which there are overall five different
-ones, denoted as Γ = A1, A2, E, T 1, T2, with dimensions
-1,1,2,3,3, respectively. It is typically a good assump-
-tion to identify S-wave ( ℓ= 0) states in infinite volume
-with A+
-1cubic states, and P-wave states with the T−
-1
-representation, where the superscript indicates positive
-or negative parity.1
-B. Explicit formulae
-We present here analytic forms of the radius shift for
-ℓ= 0 and ℓ= 1 contributions to the A+
-1andT−
-1cubic
-representations, respectively. After calculating the radius
-shift for S-wave and P-wave states using the method pre-
-sented above, we find that
-∆
-r2A+
-1
-0(L) =
-|γ|2e−κL 
-L2
-4κ+3 
-1−8κ2
-r2
-∞
-8κ3+a
-κ4L!
-+3
-16|γ|2L3Ei(−κL) +O
-e−√
-2κL
-(81)
-and
-∆
-r2T−
-1
-1(L) =
-|γ|2e−κL 
-−L2
-4κ+3 
-5 + 8 κ2
-r2
-∞
-8κ3+a
-κ4L!
-+3
-16κ2|γ|2L(8−κ2L2)Ei(−κL) +O
-e−√
-2κL
-,(82)
-where ais a dimensionless fit parameter. The details
-of how we arrived at these expressions are given in the
-appendix. We make the following observations:
-1. S-wave representations are one dimensional, and the
-same is true for A+
-1. All three basis states for ℓ= 1
-(and therefore for Γ = T−
-1in the P-wave approximation)
-have the same radius shift since they are all just different
-rotations of essentially the same degenerate state.
-2. In general, the radius-shift formula will have at least
-two additional fit parameters compared to the energy
-shift. The first of these is the αintroduced in Eq. (60),
-while the second is R, the upper bound of the interior
-1Higher angular momenta ℓcontribute to both cubic multiplets,
-but there are significant gaps. As discussed in Ref. [38], A+
-1
-receives contributions from ℓ= 0,4,6,8, . . ., while for T−
-1the
-sequence is ℓ= 1,3,4,5, . . ..
-10
-integration domain that enters via the indicator function
-χP∩Ain Eq. (80), which is in general unknown if the in-
-teraction does not have a strict finite range. Remarkably,
-however, the S- and P-wave radius shift formulae still fea-
-ture only oneadditional fit parameter compared to the
-energy shift since we were able to absorb all Randα
-dependence into a constant a, as shown in the appendix.
-3. We also note that the S- and P-wave radius shifts
-are exactly negatives of each other up to order
-O 
-e−κL×L0
-=O 
-e−κL
-. That is, the S- and P-wave
-radius shifts are
-∆
-r2A+
-1
-0(L) =|γ|2e−κL
-16κ2 
-κL2+ 3L+O 
-L0
-∆
-r2T−
-1
-1(L) =−|γ|2e−κL
-16κ2 
-κL2+ 3L+O 
-L0
-.
-This finding is similar to what has been found for the
-finite-volume energy shifts [32].
-4. From the correlation between binding energies and
-mean-squared radii that in infinite-volume usually means
-that more deeply bound states become more compact,
-combined with the known volume dependence of the
-binding energy, [31, 32] one might intuitively expect the
-leading radius corrections to have exactly the opposite
-signs of what we found here. S-wave bound states be-
-come more deeply bound in finite volume, so the naive
-intuition would be that their radii would decrease , and
-vice versa for P-wave states. However, the behavior we
-derived here can in fact be related to how the finite vol-
-ume affects the wave functions, similar to the intuitive ar-
-gument that explains the sign of the energy shift [31, 32]:
-Since A+
-1S-wave states have even parity, the derivative
-of the wave function across the boundary of the box must
-be zero. This means that the finite-volume wave function
-can have a larger-magnitude tail near the boundary of the
-box than the corresponding infinite-volume wave function
-at the same distance. Since the mean-squared radius de-
-fined as the expectation value of r2relatively emphasizes
-contributions from large distances, overall the radius can
-increase in finite volume. For T−
-1P-wave states on the
-other hand, odd parity forces the wave function to zero at
-the boundary, compressing the wave function profile and
-therefore leading to a smaller radius compared to infinite
-volume.
-C. Numerical checks
-Part of this work is determining the optimal strategy
-for using the shift formulae for practical radius extrapo-
-lations. For this purpose, we assume that we are dealing
-with a finite-volume simulation that provides both ener-
-gies and wave functions for the states of interest, such as
-a straightforward lattice discretization of the Hamiltio-
-nian or a discrete variable representation (DVR) based
-on plane-wave states, an efficient few-body implementa-
-tion of which has been discussed in Refs. [39–41]. Sincewe have access to the energy data, it makes sense to use
-that first to extract the binding momentum κand the
-ANC γ. Once κandγhave been determined, they can
-be used as fixed parameters in the radius volume depen-
-dence, leaving only two parameters still to be fit,
-r2
-∞
-anda.
-Determining a particular “best” fitting algorithm is
-difficult due to the unknown higher-order terms and the
-exponential form of the volume dependence. One option,
-employed in much of the FV bound-state literature cited
-previously, is to fit the data on a logarithmic scale and
-focus on the large-volume region where the higher-order
-corrections are smaller. However, fitting on a logarithmic
-scale introduces several complications. Firstly, in order
-to obtain a simple form, one generally needs to subtract
-the infinite-volume value from the data. While this can
-be done relatively easily for the binding energy in some
-cases,2in general the infinite-volume value is one of the
-fit parameters, so we do not know its value before per-
-forming the fit. Even after getting past that problem,
-logarithmic scales can make it very difficult to determine
-constant terms, such as
-r2
-∞
-in
-
-r2
-(L) =
-r2
-∞
-+ ∆
-r2
-(L), (83)
-cf. Eq. (60), because the logarithm of the right-hand side
-diverges near the correct value, i.e., when the fit is near
-optimal. Since the residuals may not reflect the true
-quality of the fit, this fitting method tends to be unstable.
-The method we propose assumes that the only source
-of uncertainty comes from the unknown higher-order
-terms. Therefore, it makes sense to simply minimize the
-residuals on a linear scale weighted by the inverse abso-
-lute value of those higher order terms. Since of course we
-do not know the exact form of the higher-order terms, we
-merely assume that they scale appropriately as e−√
-2κL.
-To illustrate this method with concrete examples, we per-
-form fits using a weighted least-squares algorithm where
-the weights are assigned as described above. Specifically,
-we apply this procedure to perform fits of the form
-E(L) = ∆ E(L) +E∞ (84)
-for the energy, and as in Eq. (83) for the radius.
-For our numerical simulation we use the DVR frame-
-work of Ref. [39] and as concrete interaction we use at-
-tractive local Gaussian potentials of the form
-V(r) =V0exp 
-−r
-R02!
-, (85)
-2ForA+
-1andT−
-1states without Coulomb interaction, the leading
-volume dependence is a pure exponential, so one can determine
-the infinite-volume energy by demanding that the volume depen-
-dence is linear on an (approximately scaled) logarithmic scale, as
-done for example in Ref. [23].‘
-11
-with parameters V0<0 and R0>0. This interaction
-does not have a strict finite range Ras assumed for con-
-venience in the derivation of the radius volume depen-
-dence, but corrections stemming from the Gaussian tails
-of the potential can generally be neglected.
-Example fits for S- and P-wave states are shown in
-Fig. 3 and Fig. 4, respectively. Even though the fits were
-performed on a linear scale, as described above, they look
-excellent on the logarithmic scale that we chose to im-
-prove the display and highlight the excellent agreement
-of the numerical simulation with our predictions. This is
-because of the exponential weighting.
-The quality of the fit for the radius is particularly good
-given that κandγwere predetermined by the energy fit
-and the fit parameter ahas very little influence on the
-shape of the curve. We see the analytic fit significantly
-deviating from the simulation data only in very small
-volumes due to the higher order terms and due to vio-
-lating of the condition L≫R. The latter is most likely
-the dominant reason because we observe that the devi-
-ation occurs over approximately the same volume range
-for both the energy and the radius, with comparable mag-
-nitude.
-L10−610−410−2−∆E(L)
-EnergyDVR simulation
-Analytic ﬁt
-6 8 10 12 14 16 18 20
-L10−510−410−310−210−1∆⟨r2⟩(L)
-RadiusDVR simulation
-Analytic ﬁt
-Figure 3. Volume dependence for the energy and mean
-squared radius of an S-wave state using a Gaussian poten-
-tial (R= 2, V0=−3). Quantities are reported in natural
-units with the particle mass set to 1. The energy and radius
-shifts from a numerical simulation and the analytic fit are
-plotted in the upper and lower panels, respectively.
-A quantitative overview of the radius extrapolations
-we can get using this method is shown in Tables I and II.
-For comparison, continuum results were calculated as ref-
-erence by numerically solving the radial equation for the
-system via the shooting method and evaluating the mean
-squared radius using the wave functions obtained in that
-manner. The radius extrapolations perform well over a
-variety of volume ranges and the extrapolated radius is
-consistently more accurate (compared to the reference re-
-sults) than the radius from the largest simulated volume.
-We note that the uncertainty in the extrapolated radius
-L10−510−310−1∆E(L)
-EnergyDVR simulation
-Analytic ﬁt
-6 8 10 12 14 16 18 20
-L10−410−310−210−1−∆⟨r2⟩(L)
-RadiusDVR simulation
-Analytic ﬁtFigure 4. Volume dependence for the energy and mean
-squared radius of a P-wave state using a Gaussian potential
-(R= 1,V0=−14). Quantities are reported in natural units
-with the particle mass set to 1. The energy and radius shifts
-from a numerical simulation and the analytic fit are plotted
-in the upper and lower panels, respectively.
-Fit Range: L= 6···Lmax
-Lmax
-r2
-(Lmax) ⟨r2
-∞⟩fit
-10 0 .77457786831802 0 .7625(3)
-12 0 .76302346893672 0 .76022(3)
-14 0 .76051685324793 0 .759917(3)
-16 0 .76000414620613 0 .7598839(3)
-18 0 .75990366351178 0 .75988064(2)
-20 0 .75988461024428 0 .759880344(2)
-Continuum: 0 .75988031
-Table I. Fit results for ⟨r2
-∞⟩over different volume ranges for an
-S-wave state ( R= 2, V0=−3) compared to the mean squared
-radius at the largest volume in the fit region. Quantities are
-reported in natural units with the particle mass set to 1.
-extracted from the fits is only a lower bound for the true
-theoretical uncertainties. A more sophisticated approach
-would propagate the uncertainties in κandγfrom the
-energy fits and include include also the systematic uncer-
-tainty stemming from omitted higher order terms in the
-radius volume dependence.
-IV. SUMMARY AND OUTLOOK
-We have studied the leading volume dependence for
-the mean squared radius of bound states of two point
-particles in a finite periodic box. Using an ansatz for the
-wave function in finite volume and a sequence of system-
-atic simplifications, we derived a general formula for the
-finite-volume correction to the radius expectation value.
-With the help of a carefully constructed coordinate sys-
-tem, we were able to evaluate this general expression and
-12
-Fit Range: L= 6···Lmax
-Lmax
-r2
-(Lmax) ⟨r2
-∞⟩fit
-10 0 .578866122009667 0 .5927(3)
-12 0 .589849429592643 0 .59527(8)
-14 0 .594046766392319 0 .59607(2)
-16 0 .595575413626522 0 .596305(5)
-18 0 .596112250896048 0 .596366(1)
-20 0 .596295400058964 0 .5963814(2)
-Continuum: 0 .5963857
-Table II. Fit results for ⟨r2
-∞⟩over different volume ranges for
-a P-wave state ( R= 1, V0=−14) compared to the mean
-squared radius at the largest volume in the fit region. Quan-
-tities are reported in natural units with the particle mass set
-to 1.
-obtain closed-form expressions for the important cases of
-S- and P-wave states falling within the A+
-1andT−
-1irre-
-ducible representations of the cubic group in finite vol-
-ume. These expressions are to a large extent informed
-by the volume dependence of the energy and involve a
-surprisingly small number of additional parameters that
-need to be fit to numerical simulation data. As part
-of this work we have performed such numerical simula-
-tion using Gaussian model potentials and found excellent
-agreement of our analytic results with calculations.
-Our results constitute important progress towards ob-
-taining precise predictions from finite-volume simulations
-for observables beyond binding energies for quantum sys-
-tems such as atomic nuclei. While we have studied here
-explicitly the mean squared radius, our method of con-
-structing an ansatz for the periodic finite-volume wave
-function without explicit knowledge of the short-distance
-behavior, and subsequently evaluating matrix elements
-based on this ansatz, provides a recipe for deriving the
-volume dependence of other static properties, such as for
-example quadrupole moments.
-An important next step towards implementing ra-
-dius extrapolations in practical applications will be the
-extension of our findings to bound states comprised
-of more than two particles. Guidance for such work
-can be provided by the formalism that derived the
-binding-energy volume dependence for arbitrary cluster
-states [23]. Moreover, recent work that studies charged-
-particle bound states in periodic boxes [24] can inform
-the extension of our method to such systems.
-Finally, it is worth noting that radii of atomic nuclei
-are typically measured using electromagnetic scattering
-processes. Specifically, charge radii can be inferred from
-the slope of the so-called charge form factor FC(q2),
-where ⃗ qis the momentum transferred to the nucleus by
-virtual-photon exchange, in the limit q2→0. Matter
-radii can then be further estimated from the measured
-charge radii. For theory, it is desirable to follow an anal-
-ogous procedure, which compared to evaluating the ex-
-pectation value of r2can ensure consistency with the
-experimental determination and in particular take intoaccount a systematic expansion of the electromagnetic
-current operator. Following this approach in finite vol-
-ume requires understanding the volume dependence of
-FC(q2), which can be informed by the results presented
-in this paper.
-ACKNOWLEDGMENTS
-We thank Lex Kemper and Dean Lee for useful dis-
-cussions. We furthermore acknowledge work by Brandon
-Holton on a precursor of the research presented in this
-paper. This work was supported by the National Sci-
-ence Foundation under Grant No. PHY–2044632 as well
-as by the U.S. Department of Energy (DE-SC0024520
-– STREAMLINE Collaboration and DE-SC0024622).
-This material is based upon work supported by the U.S.
-Department of Energy, Office of Science, Office of Nu-
-clear Physics, under the FRIB Theory Alliance, award
-DE-SC0013617.
-Appendix A: Detailed derivation of the final
-radius-shift expressions
-We calculate here the explicit final expressions for the
-finite-volume radius shifts given in the main text.
-1. S-wave evaluation
-For an S-wave state, the infinite-volume wave function
-has the form
-ψ∞,asm(r, θ, ϕ ) =γ√
-4πe−κr
-r(A1)
-for large r. Since the S-wave state is rotationally sym-
-metric and can be chosen to be real, we can simplify
-Eq. (72) to
-∆
-r2A+
-1
-0(L)
-=α∆E(L) + 6
-ψ∞,asmˆξψ∞,asm
-+O
-e−√
-2κL
-.
-(A2)
-We can also insert the known form of the S-wave energy
-shift to get
-∆
-r2A+
-1
-0(L)
-=−3|γ|2α
-µLe−κL+6
-ψ∞,asmˆξψ∞,asm
-+O
-e−√
-2κL
-.
-(A3)
-13
-Writing out the integrand that appears in the evaluation
-of the matrix element, we get
-ψ∗
-∞,asm(r)ˆξψ∞,asm(r)
-=χP∩A(r)|γ|2e−κ(r+u)
-16πr2u
-2r 
-u2−4
-r2
-∞
-+u(u−r)(r+u)eκ(u−r)
-,(A4)noting that both uandrwill be integrated over as de-
-scribed in the main text. We now perform the integrals
-in Eq. (79) with this integrand and drop higher-order
-terms:
-
-ψ∞,asmˆξψ∞,asm
-=|γ|2
-32L3Ei(−κL) +|γ|2e−κLL2
-24κ+ 
-1−8κ2
-r2
-∞
-16κ3
-−e−2κR 
-e2κR 
-4κ2 
-κR3+ 2
-r2
-∞
-(3−6κR)
-−3
-+ 6κ 
-κR2+R−4κ
-r2
-∞
-+ 3
-48κ4L
-+O
-e−√
-2κL
-.(A5)
-Putting everything back together we get
-∆
-r2A+
-1
-0(L) =3
-16|γ|2L3Ei(−κL) +|γ|2e−κLL2
-4κ+3 
-1−8κ2
-r2
-∞
-8κ3−3α
-µL
-−e−2κR 
-e2κR 
-4κ2 
-κR3+ 2
-r2
-∞
-(3−6κR)
-−3
-+ 6κ 
-κR2+R−4κ
-r2
-∞
-+ 3
-8κ4L
-+O
-e−√
-2κL
-.(A6)
-We can absorb many of the constants that appear in this
-expression into a single constant a. Doing that, we arrive
-at Eq. (81) in the main text.
-2. P-wave evaluation
-As stated in the main text, all three basis states for ℓ=
-1 and Γ = T−
-1have the same radius shift since they are alljust different rotations of essentially the same degenerate
-state. It therefore suffices to consider just one of the wave
-functions in the multiplet, the asymptotic form of which
-we can write as
-ψ∞,asm(r, θ, ϕ ) =r
-3
-4πγe−κr(κr+ 1) cos θ
-κr2. (A7)
-We begin again with Eq. (72). Expanding the sum and
-plugging in the known form of the P-wave energy shift,
-we get
-∆
-r2T−
-1
-1(L) =3|γ|2α
-µLe−κL+ Re
-ˆR(ˆx)ψ∞,asmˆξˆR(ˆx)ψ∞,asm
-+
-ˆR(ˆy)ψ∞,asmˆξˆR(ˆy)ψ∞,asm
-+
-ˆR(ˆz)ψ∞,asmˆξˆR(ˆz)ψ∞,asm
-+
-ˆR(−ˆy)ψ∞,asmˆξˆR(−ˆy)ψ∞,asm
-+
-ˆR(−ˆx)ψ∞,asmˆξˆR(−ˆx)ψ∞,asm
-+
-ˆR(−ˆz)ψ∞,asmˆξˆR(−ˆz)ψ∞,asm
-+O
-e−√
-2κL
-.(A8)
-For the P-wave state we have chosen in Eq. (A7) it holds that
-ˆR(−n)|ψ∞,asm⟩=−ˆR(n)|ψ∞,asm⟩. (A9)
-Moreover, ˆR(ˆz) is simply the identity operator. Using this to simplify the expression, we get
-∆
-r2T−
-1
-1(L) =3|γ|2α
-µLe−κL+ 2Re
-ψ∞,asmˆξψ∞,asm
-+
-ˆR(ˆx)ψ∞,asmˆξˆR(ˆx)ψ∞,asm
-+
-ˆR(ˆy)ψ∞,asmˆξˆR(ˆy)ψ∞,asm
-+O
-e−√
-2κL
-.(A10)
-14
-Writing out the integrand that appears in the evaluation of the matrix elements leads to
-ψ∗
-∞,asm(r)ˆξψ∞,asm(r) +h
-ˆR(ˆx)ψ∞,asm(r)i∗ˆξh
-ˆR(ˆx)ψ∞,asm(r)i
-+h
-ˆR(ˆy)ψ∞,asm(r)i∗ˆξh
-ˆR(ˆy)ψ∞,asm(r)i
-=χP∩A(r)3|γ|2(κr+ 1)e−κ(2r+u)
-64πκ2L3r6u2(
-4L2r21− 
-L2+r2−u22
-4L2r2
-Lu2(κr+ 1)( u−r)(r+u)eκu
-+ 2r4eκr 
-u2−4
-r2
-∞
-(κu+ 1)
-+ 
-L2+r2−u2
-Lu2(κr+ 1)( u−r)(r+u)eκu 
-L2+r2−u2
-+ 2r4eκr 
-u2−4
-r2
-∞
-(κu+ 1) 
-r2−u2−L2)
-,(A11)
-noting that both uandrwill be integrated over as described in the main text. We now perform the integrals in
-Eq. (79) with this integrand and drop higher order terms:
-
-ψ∞,asmˆξψ∞,asm
-+
-ˆR(ˆx)ψ∞,asmˆξˆR(ˆx)ψ∞,asm
-+
-ˆR(ˆy)ψ∞,asmˆξˆR(ˆy)ψ∞,asm
-=3
-32κ2|γ|2L 
-8−κ2L2
-Ei(−κL) +|γ|2e−κL"
-−L2
-8κ+3 
-5 + 8 κ2
-r2
-∞
-16κ3
-+e−2κR
-16κ4LR
-e2κR 
-4κ3R4−12R2 
-κ+ 4κ3
-r2
-∞
-+ 3R 
-8κ2
-r2
-∞
-+ 5
-−24κ
-r2
-∞
-−3 
-2κ2R3+ 6κR2+R 
-5−8κ2
-r2
-∞
-−16κ
-r2
-∞#
-+O
-e−√
-2κL
-.(A12)
-Putting everything back together, we get
-∆
-r2T−
-1
-1(L) =3
-16κ2|γ|2L 
-8−κ2L2
-Ei(−κL) +|γ|2e−κL
-−L2
-4κ+3 
-5 + 8 κ2
-r2
-∞
-8κ3
-+e−2κR
-8κ4LR
-e2κR 
-4κ3R4−12R2 
-κ+ 4κ3
-r2
-∞
-+ 3R 
-8κ2
-r2
-∞
-+ 5
-−48κ
-r2
-∞
-−3 
-2κ2R3+ 6κR2+R 
-5−8κ2
-r2
-∞
-−16κ
-r2
-∞
-+3α
-µL#
-+O
-e−√
-2κL
-.(A13)
-As for A+
-1S-wave sates, we can absorb the constants that appear in this expression into a single constant athat needs
-to be fitted. Doing that, we arrive at Eq. (82) in the main text.
-[1] M. L¨ uscher, Comm. Math. Phys. 104, 177 (1986).
-[2] M. L¨ uscher, Comm. Math. Phys. 105, 153 (1986).
-[3] M. L¨ uscher, Nucl. Phys. B 354, 531 (1991), publisher:
-North-Holland.
-[4] S. Kreuzer and H.-W. Hammer, Phys. Lett. B 694, 424
-(2011), arXiv:1008.4499 [hep-lat].
-[5] S. Kreuzer and H. W. Grießhammer, Eur. Phys. J. A 48,
-93 (2012), arXiv:1205.0277 [nucl-th].
-[6] K. Polejaeva and A. Rusetsky, Eur. Phys. J. A 48, 67
-(2012), arXiv:1203.1241 [hep-lat].
-[7] R. A. Briceno and Z. Davoudi, Phys. Rev. D 87, 094507
-(2013), arXiv:1212.3398 [hep-lat].
-[8] S. Kreuzer and H.-W. Hammer, in Proceedings, 5th Asia-
-Pacific Conference on Few-Body Problems in Physics
-2011 (APFB2011): Seoul, Korea, August 22-26, 2011 ,Vol. 54 (2013) pp. 157–164.
-[9] U.-G. Meißner, G. R´ ıos, and A. Rusetsky, Phys. Rev.
-Lett.114, 091602 (2015), [Erratum: Phys. Rev. Lett.117
-069902 (2016)], arXiv:1412.4969 [hep-lat].
-[10] M. T. Hansen and S. R. Sharpe, Phys. Rev. D 92, 114509
-(2015), arXiv:1504.04248 [hep-lat].
-[11] H.-W. Hammer, J.-Y. Pang, and A. Rusetsky, Journal
-of High Energy Physics 2017 , 109 (2017).
-[12] H.-W. Hammer, J.-Y. Pang, and A. Rusetsky, JHEP
-2017 , 115 (2017).
-[13] M. Mai and M. D¨ oring, Eur. Phys. J. A 53, 240 (2017),
-arXiv:1709.08222 [hep-lat].
-[14] M. D¨ oring, H.-W. Hammer, M. Mai, J.-Y. Pang,
-A. Rusetsky, and J. Wu, Phys. Rev. D 97, 114508 (2018),
-arXiv:1802.03362 [hep-lat].
-15
-[15] J.-Y. Pang, J.-J. Wu, H.-W. Hammer, U.-G. Meißner,
-and A. Rusetsky, Phys. Rev. D 99, 074513 (2019),
-arXiv:1902.01111 [hep-lat].
-[16] C. Culver, M. Mai, R. Brett, A. Alexandru, and
-M. D¨ oring, Phys. Rev. D 101, 114507 (2020),
-arXiv:1911.09047 [hep-lat].
-[17] R. A. Brice˜ no, M. T. Hansen, S. R. Sharpe, and
-A. P. Szczepaniak, Phys. Rev. D 100, 054508 (2019),
-arXiv:1905.11188 [hep-lat].
-[18] F. Romero-L´ opez, S. R. Sharpe, T. D. Blanton, R. A.
-Brice˜ no, and M. T. Hansen, Journal of High Energy
-Physics 2019 , 7 (2019).
-[19] M. T. Hansen, F. Romero-L´ opez, and S. R. Sharpe, Jour-
-nal of High Energy Physics 2020 , 47 (2020), [Erratum:
-JHEP 02, 014 (2021)].
-[20] F. M¨ uller, J.-Y. Pang, A. Rusetsky, and J.-J. Wu, Jour-
-nal of High Energy Physics 2022 , 158 (2022).
-[21] Z. T. Draper, M. T. Hansen, F. Romero-L´ opez, and
-S. R. Sharpe, JHEP 07, 226 (2023), arXiv:2303.10219
-[hep-lat].
-[22] R. Bubna, F. M¨ uller, and A. Rusetsky, Phys. Rev. D
-108, 014518 (2023), arXiv:2304.13635 [hep-lat].
-[23] S. K¨ onig and D. Lee, Phys. Lett. B 779, 9 (2018).
-[24] H. Yu, S. K¨ onig, and D. Lee, Phys. Rev. Lett. 131,
-212502 (2023), arXiv:2212.14379 [nucl-th].
-[25] H. Yu, N. Yapa, and S. K¨ onig, (2023), arXiv:2309.03196
-[nucl-th].
-[26] D. Lee, Prog. Part. Nucl. Phys. 63, 117 (2009),
-arXiv:0804.3501 [nucl-th].
-[27] T. A. L¨ ahde and U.-G. Meißner, Nuclear Lattice EffectiveField Theory: An introduction , Vol. 957 (Springer, 2019).
-[28] B.-N. Lu, N. Li, S. Elhatisari, Y.-Z. Ma, D. Lee, and
-U.-G. Meißner, Phys. Rev. Lett. 128, 242501 (2022),
-arXiv:2111.14191 [nucl-th].
-[29] S. Shen, T. A. L¨ ahde, D. Lee, and U.-G. Meißner,
-(2022), arXiv:2202.13596 [nucl-th].
-[30] S. Elhatisari et al. , (2022), arXiv:2210.17488 [nucl-th].
-[31] S. K¨ onig, D. Lee, and H.-W. Hammer, Phys. Rev. Lett.
-107, 112001 (2011).
-[32] S. K¨ onig, D. Lee, and H.-W. Hammer, Annals Phys.
-327, 1450 (2012).
-[33] R. J. Furnstahl, G. Hagen, and T. Papenbrock, Phys.
-Rev. C 86, 031301 (2012), arXiv:1207.6100 [nucl-th].
-[34] R. J. Furnstahl, T. Papenbrock, and S. N. More, Phys.
-Rev. C 89, 044301 (2014), arXiv:1312.6876 [nucl-th].
-[35] D. Odell, T. Papenbrock, and L. Platter, Phys. Rev. C
-93, 044331 (2016), arXiv:1512.04851 [nucl-th].
-[36] S. N. More, A. Ekstr¨ om, R. J. Furnstahl, G. Hagen,
-and T. Papenbrock, Phys. Rev. C 87, 044326 (2013),
-arXiv:1302.3815 [nucl-th].
-[37] D. Djajaputra and B. R. Cooper, European Journal of
-Physics 21, 261 (2000).
-[38] R. C. Johnson, Phys. Lett. B 114, 147 (1982).
-[39] P. Klos, S. K¨ onig, H.-W. Hammer, J. E. Lynn, and
-A. Schwenk, Phys. Rev. C 98, 034004 (2018).
-[40] S. K¨ onig, Few Body Syst. 61, 20 (2020),
-arXiv:2005.01478 [hep-lat].
-[41] S. K¨ onig, J. Phys. Conf. Ser. 2453 , 012025 (2023),
-arXiv:2211.00395 [nucl-th].

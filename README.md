@@ -1,39 +1,14 @@
 # Weaviate Workshop
 
-## GitHub CodeSpaces instructions
-
-1. Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop)
-
-2. Swith to `open-source`
-
-3. Create a Codespace project
-  * Press the green `Create open-source` button
-  <br/>Or
-  * Press the green `Code` button, then switch to `Codespaces` tab
-  * Press the `+` button
-
-4. Start docker container
-  * In the VS Code, open `_docker` folder
-  * Right click on `docker-compose.yml` and select `Compose Up`
-
-
 ## What you need for the workshop
 
 * API Keys for embedding models, like:
   * OpenAI Key
-  * Cohere Key
   * etc,
-
 * Python 3.9 or newer
 
-* Docker Compose (Todo: update this in case we can do it all with WCS)
+## Local Setup
 
-# Local Setup
-> (if not using GitHub Codespaces)
-
-> Ideally, run this workshop in GitHub Codespaces, see [instructions](#github-codespaces-instructions).
-
-## How to setup the python environment with venv
 To run the project locally, it is best to setup python environment with venv.
 
 ### Setup - running locally – do this only once
