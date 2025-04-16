@@ -136,7 +136,7 @@ uri-template==1.3.0
 urllib3==2.3.0
 validators==0.34.0
 wcwidth==0.2.13
-weaviate-client==4.12.0
+weaviate-client==4.13.2
 webcolors==24.11.1
 webencodings==0.5.1
 websocket-client==1.8.0
