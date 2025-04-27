@@ -3,6 +3,12 @@
 {
   "name": "Weaviate Playground",
   "image": "databyjp/weaviate-python-dev-env:latest",
+
+  "features": {
+      // Docker compose inside the container
+      "ghcr.io/devcontainers/features/docker-in-docker:2.9": {} 
+  },
+
   // Configure tool-specific properties.
   "customizations": {
     // Configure properties specific to VS Code.
@@ -18,7 +24,8 @@
       "extensions": [
         "ms-python.black-formatter",
         "ms-python.python",
-        "ms-toolsai.jupyter"
+        "ms-toolsai.jupyter",
+        "ms-azuretools.vscode-docker"
       ]
     }
   },
