@@ -62,3 +62,8 @@ Head to [1-intro/0-prep-run.ipynb](./1-intro/0-prep-run.ipynb), and run through 
 ## Download the prevectorized data
 
 Head to [prep-data.ipynb](./prep-data.ipynb) and run all the cells. This should download the data we will use in the second lesson.
+
+## Enable asynch indexing in the Cloud Console or in Docker
+
+In the Cloud Console
+![wcd enable async - step 1](img/wcd-enable-async-indexing.png)
