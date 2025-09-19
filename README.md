@@ -2,21 +2,16 @@
 
 ## What you need for the workshop
 
-* API Keys for embedding models, like:
-  * OpenAI - [API keys](https://platform.openai.com/settings/profile?tab=api-keys)
-  * etc,
+* Docker installed and running on your computer
+* An running Docker service
 
-## Create a Weaviate Cloud instance
+Download [Docker](https://docs.docker.com/get-started/get-docker/)
 
-  * Head to [Weaviate Cloud console](https://console.weaviate.cloud/) and log in, or create a new account.
-  * Create a free `Sandbox` cluster. Give it a name, select the cloud region and press "Create".
-
-![wcd create cluster - step 1](img/wcd-create-cluster-1.jpg)
-![wcd create cluster - step 2](img/wcd-create-cluster-2.jpg)
+Open terminal and enter the _docker folder and start the service
+cd _docker
+docker-compose up 
 
 ## Running the workshop
-
-### Option 1 - Run locally
 
 #### Virtual environment – do this only once
 First create a new venv configuration.
@@ -34,26 +29,47 @@ And install the required packages.
 pip install -r requirements.txt
 ```
 
-### Option 2 - GitHub CodeSpaces instructions
 
-1. Go to the project [https://github.com/weaviate-tutorials/weaviate-workshop](https://github.com/weaviate-tutorials/weaviate-workshop)
+## Install ollama
 
-Make sure you are logged in with GitHub.
+Open terminal and paste the follwoing commands:
+ 
 
-2. Create a Codespace project
-  * Press the green `<> Code` button, then switch to `Codespaces` tab.
-  * Press the `Create codespace on main` button.
-  * Your codespace project will install all the necessary components, it will take a few minutes.
+* brew install ollama - Installs Ollama
+
+ 
+* ollama serve - Runs Ollama service
+### Pull an embedding model
+
+Open a new terminal and run:
+
+ollama pull nomic-embed-text
+
+### Pull a generative model
+
+ollama pull llama3.2:1b
+- Memory: ~2-3GB RAM when running
+- Parameters: 1 billion
+- Better quality responses
+
+**OR**
+
+ollama pull qwen2.5:0.5b
+- Memory: ~1GB RAM when running
+- Parameters: 0.5 billion
+- Faster but lower quality responses
 
 
 ## Env vars
 
 Update env vars in .env.
 
-Hint. you can find your Weaviate Cluster URL and API keys in the [WCD console](https://console.weaviate.cloud/).
 
-* WEAVIATE_URL - is the `REST Endpoint`
-* WEAVIATE_KEY - is the `Admin` key in `API Keys`
+* WEAVIATE_URL=http://localhost:8080
+* WEAVIATE_KEY=root-user-key
+* OPENAI_URL=http://localhost:11434/v1
+* OPENAI_API_KEY=ollama
+
 
 ## Test your setup
 
@@ -63,7 +79,6 @@ Head to [1-intro/0-prep-run.ipynb](./1-intro/0-prep-run.ipynb), and run through 
 
 Head to [prep-data.ipynb](./prep-data.ipynb) and run all the cells. This should download the data we will use in the second lesson.
 
-## Enable asynch indexing in the Cloud Console or in Docker
 
-In the Cloud Console
-![wcd enable async - step 1](img/wcd-enable-async-indexing.png)
+
+

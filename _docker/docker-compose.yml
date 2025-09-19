@@ -17,6 +17,7 @@ services:
     - weaviate_data:/var/lib/weaviate
     restart: on-failure:0
     environment:
+      ASYNC_INDEXING: 'true'
       QUERY_DEFAULTS_LIMIT: 25
       PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
       ENABLE_API_BASED_MODULES: 'true'
@@ -29,7 +30,7 @@ services:
       AUTHORIZATION_ENABLE_RBAC: 'true'
       AUTHORIZATION_RBAC_ROOT_USERS: 'root-user'
       DEFAULT_VECTORIZER_MODULE: 'none'
-      ENABLE_MODULES: ''
+      ENABLE_MODULES: 'text2vec-openai,generative-openai,text2vec-ollama,generative-ollama'  # Add the modules here
 volumes:  
   weaviate_data:
 ...

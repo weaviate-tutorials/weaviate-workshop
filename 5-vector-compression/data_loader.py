@@ -3,7 +3,7 @@ from tqdm import tqdm
 from weaviate.util import generate_uuid5
 
 def prepare_dataset():
-    dt = load_dataset('parquet', data_files={'train': ['../wiki-data/weaviate/snowflake-arctic-v2/*.parquet']}, split="train", streaming=True)
+    dt = load_dataset('parquet', data_files={'train': ['../wiki-data/weaviate/nomic-embed-text/*.parquet']}, split="train", streaming=True)
     # dt = load_dataset("weaviate/wiki-sample", "weaviate-snowflake-arctic-v2", split="train", streaming=True)
 
     print(f"Loaded Dataset: '{dt.info.dataset_name}' - Config: '{dt.info.config_name}'")
