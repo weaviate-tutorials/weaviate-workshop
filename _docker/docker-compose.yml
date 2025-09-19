@@ -1,5 +1,4 @@
 ---
-version: '3.4'
 services:
   weaviate:
     command:
@@ -30,7 +29,7 @@ services:
       AUTHORIZATION_ENABLE_RBAC: 'true'
       AUTHORIZATION_RBAC_ROOT_USERS: 'root-user'
       DEFAULT_VECTORIZER_MODULE: 'none'
-      ENABLE_MODULES: 'text2vec-openai,generative-openai,text2vec-ollama,generative-ollama'  # Add the modules here
+      ENABLE_MODULES: 'text2vec-openai,generative-openai'  # Add the modules here
 volumes:  
   weaviate_data:
 ...

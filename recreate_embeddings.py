@@ -27,7 +27,7 @@ def get_embedding(text, model=EMBEDDING_MODEL, max_retries=3):
     url = f"http://localhost:11434/v1/embeddings"
     headers = {
         "Content-Type": "application/json",
-        "Authorization": f"Bearer {OPENAI_API_KEY}"
+        "Authorization": f"Bearer {OPENAI_API_KEY[:20]}"
     }
     data = {
         "input": text[:8192],  # Truncate very long texts
