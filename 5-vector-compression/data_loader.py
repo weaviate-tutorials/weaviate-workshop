@@ -28,7 +28,7 @@ def import_wiki_data(client, collection_name, max_rows=20_000):
     print(f"Importing {max_rows} data items")
 
     dataset = prepare_dataset()
-    wiki = client.collections.get(collection_name)
+    wiki = client.collections.use(collection_name)
 
     counter = 0
 
